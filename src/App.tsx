@@ -1,5 +1,12 @@
+import { Suspense } from "react"
+import { TopNews } from "./pages"
+
 function App() {
-  return <div>Hello World!</div>
+  return (
+    <Suspense fallback={"loading..."}>
+      <TopNews />
+    </Suspense>
+  )
 }
 
 export default App
