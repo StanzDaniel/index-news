@@ -13,16 +13,6 @@ const MenuButton = styled.img`
   }
 `;
 
-const CloseBtn = styled.div`
-  width: 48px;
-  height: 48px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  background: url("src/assets/close_icon.svg") no-repeat center;
-`
-
-
 function Menu() {
   const [isVisible, setIsVisible] = useState(false)
   
@@ -33,7 +23,7 @@ function Menu() {
         isVisible ?
         // REFACTORING: utilizar rxjs
         <DropdownMenu setIsVisible={setIsVisible}>
-          <CloseBtn onClick={() => setIsVisible(!isVisible)}/>
+          <div>children</div>
         </DropdownMenu> :
         null 
       }

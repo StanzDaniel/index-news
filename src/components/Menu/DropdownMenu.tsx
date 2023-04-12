@@ -12,10 +12,23 @@ const DropdownContainer = styled.div`
   opacity: 86%;
 `;
 
-function DropdownMenu({ children, setIsVisible }) {
-  const dropdownRef = useRef(null);
+const CloseBtn = styled.div`
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: url("src/assets/close_icon.svg") no-repeat center;
+`
+interface Props {
+  children: JSX.Element,
+  setIsVisible: (param: boolean) => void;
+}
 
-  const handlerClickOutside = (e) => {
+function DropdownMenu({children, setIsVisible}: Props) {
+  const dropdownRef: any= useRef();
+
+  const handlerClickOutside = (e: Event) => {
     if (!dropdownRef.current.contains(e.target)) {
       setIsVisible(false);
     }
@@ -23,10 +36,15 @@ function DropdownMenu({ children, setIsVisible }) {
 
   useEffect( () => {
     document.addEventListener("mousedown", handlerClickOutside)
+    
+    return () => {
+      document.removeEventListener("mousedown", handlerClickOutside)
+    }
   }, []);
 
   return (
     <DropdownContainer ref={dropdownRef}>
+      <CloseBtn onClick={() => setIsVisible(false)}/>
       {children}
     </DropdownContainer>
   )
