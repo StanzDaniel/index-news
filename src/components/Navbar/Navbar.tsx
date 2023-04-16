@@ -10,7 +10,6 @@ const FlexContainer = styled.div`
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
   margin: 1.2rem;
   height: 4.3rem;
-  max-width: 100%;
 `;
 
 const Logo = styled.img`

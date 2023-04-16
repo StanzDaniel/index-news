@@ -1,26 +1,17 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import SliderImages from "./SliderImages";
 
 const SliderContainer = styled.div`
   width: 100vw;
-  height: 18.3rem;
+  height: 20rem;
   background-color: #383838;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   position: relative;
 `;
-const SliderImages = styled.img`
-  max-width: 500px;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: 1s;
-  &.loaded {
-    opacity: 1;
-  }
-`;
+
 const ArrowBtn = styled.div`
   width: 62px;
   height: 100%;
@@ -36,6 +27,7 @@ const ArrowBtn = styled.div`
     right: 0;
   }
 `;
+
 
 const images = ['img.jpg', 'img_2.jpg', 'img_3.jpg'];
 

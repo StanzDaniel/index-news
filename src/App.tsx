@@ -1,10 +1,10 @@
 import { Suspense } from "react"
-import { TopNews } from "./pages"
+import { NewsPage } from "./pages"
 
 function App() {
   return (
     <Suspense fallback={"loading..."}>
-      <TopNews />
+      <NewsPage />
     </Suspense>
   )
 }
