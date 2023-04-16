@@ -1,8 +1,11 @@
-import { Navbar } from "@/components"
+import { Navbar, Slider} from "@/components"
 
 function TopNews() {
   return (
-    <Navbar/>
+    <>
+      <Navbar/>
+      <Slider />
+    </>
   )
 }
 export default TopNews

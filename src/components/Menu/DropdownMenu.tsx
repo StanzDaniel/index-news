@@ -10,6 +10,7 @@ const DropdownContainer = styled.div`
   right: 0;
   border-radius: 15px 0 0 15px;
   opacity: 86%;
+  z-index: 2;
 `;
 
 const CloseBtn = styled.div`
@@ -19,7 +20,9 @@ const CloseBtn = styled.div`
   right: 0px;
   top: 0px;
   background: url("src/assets/close_icon.svg") no-repeat center;
-`
+  & .
+`;
+
 interface Props {
   children: JSX.Element,
   setIsVisible: (param: boolean) => void;
@@ -28,7 +31,7 @@ interface Props {
 function DropdownMenu({children, setIsVisible}: Props) {
   const dropdownRef: any= useRef();
 
-  const handlerClickOutside = (e: Event) => {
+  const handlerClickOutside = (e: MouseEvent) => {
     if (!dropdownRef.current.contains(e.target)) {
       setIsVisible(false);
     }

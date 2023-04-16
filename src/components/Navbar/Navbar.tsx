@@ -19,9 +19,9 @@ const Logo = styled.img`
 `;
 
 
-
 function Navbar() {
-  return (
+
+  return ( 
     <FlexContainer>
       <div style={{width: "3.3rem"}}/>
       <Logo src="src\assets\logo.svg"/>
