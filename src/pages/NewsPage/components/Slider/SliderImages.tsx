@@ -19,7 +19,7 @@ const SliderImage = styled.img`
 function SliderImages(props: any) {
   return (
     <ImageContainer className={props.className}>
-      <Title>{"titulo de la noticia"}</Title>
+      <Title style={{paddingTop: "2.5rem"}}>{"titulo de la noticia"}</Title>
       <SliderImage {...props} />
     </ImageContainer>
   )

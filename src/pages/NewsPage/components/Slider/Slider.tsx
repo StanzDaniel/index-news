@@ -5,6 +5,7 @@ import SliderImages from "./SliderImages";
 const SliderContainer = styled.div`
   width: 100vw;
   height: 20rem;
+  margin-top: 3.5rem;
   background-color: #383838;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
   display: flex;
