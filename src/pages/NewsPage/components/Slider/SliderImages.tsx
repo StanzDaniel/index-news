@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Title } from "../NewsText";
 
 const ImageContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
   opacity: 0;
   transition: 1s;
   &.loaded {
@@ -10,7 +13,6 @@ const ImageContainer = styled.div`
 `;
 
 const SliderImage = styled.img`
-  max-width: 500px;
   width: 100%;
   height: 100%;
   object-fit: cover;

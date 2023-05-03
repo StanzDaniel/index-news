@@ -1,35 +1,47 @@
-import styled from "styled-components";
-import { Menu } from "../Menu";
+import hamburgerIcon from "@/assets/hamburguerMenu.svg";
 import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { DropdownMenu } from "../DropdownMenu";
+import { COLORS } from "@/models";
 
-const FlexContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+const NavbarContainer = styled.nav`
+  background-color: ${COLORS.PRIMARY_COLOR};
+  height: 55px;
+  display: grid;
+  grid-template-columns: 20% 1fr 20%;
   align-items: center;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-  margin: 1.2rem;
-  height: 4.3rem;
+  justify-items: center;
+  border-radius: 10px;
+  margin: 10px;
   position: fixed;
-  z-index: 2;
-  top: 0;
+  right: 0; 
   left: 0;
-  right: 0;
+  z-index: 9;
   transition: top 600ms ease;
+
   &.hidden {
     top: -100px;
   }
-`;
 
-const Logo = styled.img`
-  margin: 0 auto;
-  width: 3.3rem;
-`;
+  & .logo {
+    grid-column: 2;
+  }
 
+  & .hamburguer-menu {
+    justify-self: end;
+    margin-right: 10px;
+    transition: transform 0.25s ease;
+
+    &:hover {
+      transform: scale(1.25);
+    }
+  }
+
+`;
 
 function Navbar() {
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     let scrollPosition = window.scrollY;
@@ -41,12 +53,17 @@ function Navbar() {
 
   })
 
-  return ( 
-    <FlexContainer className={!isNavVisible ? "hidden" : ""}>
-      <div style={{width: "3.3rem"}}/>
-      <Logo src="src\assets\logo.svg"/>
-      <Menu />
-    </FlexContainer>
-  )
+
+  return (
+    <NavbarContainer className={!isNavVisible ? 'hidden' : ''}>
+      <div className='logo'>
+        <img src='src\assets\logo.svg' alt='logotipe' className='logo-image' />
+      </div>
+      <div className='hamburguer-menu' onClick={() => setIsDropdownOpen(true)}>
+        <img src={hamburgerIcon} alt="abrir menu" />
+      </div>
+      {isDropdownOpen ? <DropdownMenu setIsVisible={setIsDropdownOpen} /> : null}
+    </NavbarContainer>
+  );
 }
 export default Navbar
