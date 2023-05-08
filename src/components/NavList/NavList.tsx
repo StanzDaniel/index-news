@@ -35,6 +35,22 @@ const NavListContainer = styled.ul`
       margin-top: 15px;
     }
   }
+  
+  @media (min-width: 768px) {
+    & {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-grow: 1;
+      order: 0;
+      justify-content: space-between;
+      max-width: 768px;
+    }
+
+    & .nav-item:nth-child(2) {
+      margin-top: 0; 
+    }
+  }
 
 `;
 

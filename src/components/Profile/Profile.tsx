@@ -11,7 +11,7 @@ const ProfileContainer = styled.div`
   justify-content: end;
   gap: 20px;
   
-  $ .profile-name {
+  & .profile-name {
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: .05rem;
@@ -30,12 +30,26 @@ const ProfileContainer = styled.div`
       border: 1px solid ${COLORS.SECONDARY_COLOR_ALPHA};
     }
   }
-`;
 
-function Profile({showName, user}:any) {
+  @media (min-width: 768px) {
+    & {
+      order: 2;
+      margin: 0;
+      margin-right: 10px;
+      height: 50px;
+      align-self: center;
+    }
+  }
+`;
+interface Props {
+  showName: boolean,
+  user?: {name: string, image: string},
+}
+
+function Profile({showName, user}: Props) {
   return (
     <ProfileContainer>
-      {showName && <h3 className="profile-name">{user.name || "anónimo"}</h3>}
+      {showName && <h3 className="profile-name">{user ? user.name : "anónimo"}</h3>}
       <img src={user ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="image de perfil" className="profile-image" />
     </ProfileContainer>
   )

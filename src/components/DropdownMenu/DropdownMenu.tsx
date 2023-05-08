@@ -5,6 +5,8 @@ import { Profile } from "../Profile";
 import { NavList } from "../NavList";
 import { COLORS } from "@/models";
 
+export const navItems: string[] = ["Top News", "finanzas", "tecnologia", "salud", "ciencia"];
+
 const DropdownContainer = styled.div`
   display: flex;
   position: fixed;
@@ -47,15 +49,13 @@ function DropdownMenu({setIsVisible}: Props) {
       document.removeEventListener("mousedown", handlerClickOutside)
     }            
   }, []);
-  
-  const navItems: string[] = ["Top News", "finanzas", "tecnologia", "salud", "ciencia"];
 
   return (
     <DropdownContainer ref={dropdownRef}>
       <div className="close-dropdown" onClick={() => setIsVisible(false)}>
         <img src={closeIcon} alt="Cerrar menu" />
       </div>
-      <Profile />
+      <Profile showName={true}/>
       <NavList navItems={navItems}/>
     </DropdownContainer>
   )

@@ -29,6 +29,14 @@ const SearchContainer = styled.form`
       border: 1px solid ${COLORS.SECONDARY_COLOR_ALPHA};
     }
   }
+  @media (min-width: 768px) {
+    & {
+      max-width: 400px;
+    }
+    & .search-input {
+      border-bottom: 1px solid ${COLORS.SECONDARY_COLOR_ALPHA};
+    }
+  }
 `;
 
 interface Props {

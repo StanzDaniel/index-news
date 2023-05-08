@@ -1,8 +1,11 @@
 import hamburgerIcon from "@/assets/hamburguerMenu.svg";
+import { COLORS } from "@/models";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DropdownMenu } from "../DropdownMenu";
-import { COLORS } from "@/models";
+import { navItems } from "../DropdownMenu/DropdownMenu";
+import { NavList } from "../NavList";
+import { Profile } from "../Profile";
 
 const NavbarContainer = styled.nav`
   background-color: ${COLORS.PRIMARY_COLOR};
@@ -37,11 +40,32 @@ const NavbarContainer = styled.nav`
     }
   }
 
+  .desktop-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 55px;
+    position: relative;
+    background-color: inherit;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 768px) {
+    & {
+      grid-template-columns: 10% 1fr;
+      margin: 0;
+      border-radius: 0;
+    }
+    & .logo {
+      grid-column: 1;
+    }
+  }
 `;
 
 function Navbar() {
   const [isNavVisible, setIsNavVisible] = useState(true);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const isMobile: boolean = window.innerWidth < 768;
 
   useEffect(() => {
     let scrollPosition = window.scrollY;
@@ -50,19 +74,29 @@ function Navbar() {
       newPosition > scrollPosition ? setIsNavVisible(false) : setIsNavVisible(true);
       scrollPosition = newPosition;
     });
-
   })
-
 
   return (
     <NavbarContainer className={!isNavVisible ? 'hidden' : ''}>
       <div className='logo'>
         <img src='src\assets\logo.svg' alt='logotipe' className='logo-image' />
       </div>
-      <div className='hamburguer-menu' onClick={() => setIsDropdownOpen(true)}>
-        <img src={hamburgerIcon} alt="abrir menu" />
-      </div>
-      {isDropdownOpen ? <DropdownMenu setIsVisible={setIsDropdownOpen} /> : null}
+      {isMobile ? (
+        isDropdownOpen ? (
+          <DropdownMenu setIsVisible={setIsDropdownOpen} />
+        ) : (
+          <div
+            className='hamburguer-menu'
+            onClick={() => setIsDropdownOpen(true)}>
+            <img src={hamburgerIcon} alt='abrir menu' />
+          </div>
+        )
+      ) : (
+        <div className="desktop-menu">
+          <NavList navItems={navItems} />
+          <Profile showName={false} />
+        </div>
+      )}
     </NavbarContainer>
   );
 }
