@@ -25,7 +25,7 @@ const SearchContainer = styled.form`
     border: 1px solid transparent;
     outline: 0;
     transition: border 0.4s ease;
-    &:hover {
+    &:hover, &:focus {
       border: 1px solid ${COLORS.SECONDARY_COLOR_ALPHA};
     }
   }

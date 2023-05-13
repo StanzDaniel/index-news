@@ -1,4 +1,3 @@
-import hamburgerIcon from "@/assets/hamburguerMenu.svg";
 import { COLORS } from "@/models";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -88,7 +87,7 @@ function Navbar() {
           <div
             className='hamburguer-menu'
             onClick={() => setIsDropdownOpen(true)}>
-            <img src={hamburgerIcon} alt='abrir menu' />
+            <img src="src\assets\hamburguerMenu.svg" alt='abrir menu' />
           </div>
         )
       ) : (

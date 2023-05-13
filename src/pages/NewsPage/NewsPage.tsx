@@ -6,7 +6,6 @@ function NewsPage() {
     <>
       <Navbar/>
       <Slider />
-      <Cards />
     </>
   )
 };
