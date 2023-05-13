@@ -5,23 +5,30 @@ import { SliderContext } from "../Slider";
 const ImageSliderContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 22% 1fr 22%;
+  grid-template-columns: 100%;
   grid-template-rows: 100%;
   opacity: 0.05;
   transition: opacity 1s ease;
   overflow-x: clip;
   align-items: center;
-
+  
   & .main-image {
     display: flex;
     position: relative;
     height: 100%;
     width: 100%;
-    z-index: 1
   }
-
+  
   &.loaded {
     opacity: 1;
+  }
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 22% 1fr 22%;
+
+    & .main-image {
+      z-index: 1;
+    }
   }
 `;
 
