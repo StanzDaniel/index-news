@@ -1,11 +1,10 @@
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
 import closeIcon from "@/assets/close_icon.svg";
-import { Profile } from "../Profile";
-import { NavList } from "../NavList";
+import { useClickOutside } from "@/hooks";
 import { COLORS } from "@/models";
-
-export const navItems: string[] = ["Top News", "finanzas", "tecnologia", "salud", "ciencia"];
+import { useRef } from "react";
+import styled from "styled-components";
+import { NavList } from "../NavList";
+import { Profile } from "../Profile";
 
 const DropdownContainer = styled.div`
   display: flex;
@@ -28,27 +27,14 @@ const DropdownContainer = styled.div`
   }
 `;
 
-
-interface Props {
+interface Props { 
   setIsVisible: (param: boolean) => void;
 }
 
 function DropdownMenu({setIsVisible}: Props) {
-  const dropdownRef: any= useRef();
-
-  const handlerClickOutside = (e: MouseEvent) => {
-    if (!dropdownRef.current.contains(e.target)) {
-      setIsVisible(false);
-    }
-  }
-
-  useEffect( () => {
-    document.addEventListener("mousedown", handlerClickOutside)
-    
-    return () => {
-      document.removeEventListener("mousedown", handlerClickOutside)
-    }            
-  }, []);
+  const dropdownRef = useRef(null);
+  
+  useClickOutside(dropdownRef, setIsVisible)
 
   return (
     <DropdownContainer ref={dropdownRef}>
@@ -56,7 +42,7 @@ function DropdownMenu({setIsVisible}: Props) {
         <img src={closeIcon} alt="Cerrar menu" />
       </div>
       <Profile showName={true}/>
-      <NavList navItems={navItems}/>
+      <NavList />
     </DropdownContainer>
   )
 }

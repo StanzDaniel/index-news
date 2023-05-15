@@ -1,8 +1,7 @@
-import { COLORS } from "@/models";
-import { useEffect, useState } from "react";
+import { COLORS, NavItem } from "@/models";
+import { createContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { DropdownMenu } from "../DropdownMenu";
-import { navItems } from "../DropdownMenu/DropdownMenu";
 import { NavList } from "../NavList";
 import { Profile } from "../Profile";
 
@@ -60,8 +59,13 @@ const NavbarContainer = styled.nav`
     }
   }
 `;
+export const NavbarContext = createContext<NavItem[]>([]);
 
-function Navbar() {
+type Props = {
+  value: NavItem[],
+}
+
+function Navbar({value}: Props) {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile: boolean = window.innerWidth < 768;
@@ -76,27 +80,33 @@ function Navbar() {
   })
 
   return (
-    <NavbarContainer className={!isNavVisible ? 'hidden' : ''}>
-      <div className='logo'>
-        <img src='src\assets\logo.svg' alt='logotipe' className='logo-image' />
-      </div>
-      {isMobile ? (
-        isDropdownOpen ? (
-          <DropdownMenu setIsVisible={setIsDropdownOpen} />
-        ) : (
-          <div
-            className='hamburguer-menu'
-            onClick={() => setIsDropdownOpen(true)}>
-            <img src="src\assets\hamburguerMenu.svg" alt='abrir menu' />
-          </div>
-        )
-      ) : (
-        <div className="desktop-menu">
-          <NavList navItems={navItems} />
-          <Profile showName={false} />
+    <NavbarContext.Provider value={value}>
+      <NavbarContainer className={!isNavVisible ? 'hidden' : ''}>
+        <div className='logo'>
+          <img
+            src='src\assets\logo.svg'
+            alt='logotipe'
+            className='logo-image'
+          />
         </div>
-      )}
-    </NavbarContainer>
+        {isMobile ? (
+          isDropdownOpen ? (
+          <DropdownMenu setIsVisible={setIsDropdownOpen} />
+          ) : (
+            <div
+              className='hamburguer-menu'
+              onClick={() => setIsDropdownOpen(true)}>
+              <img src='src\assets\hamburguerMenu.svg' alt='abrir menu' />
+            </div>
+          )
+        ) : (
+          <div className='desktop-menu'>
+            <NavList />
+            <Profile showName={false} />
+          </div>
+        )}
+      </NavbarContainer>
+    </NavbarContext.Provider>
   );
 }
 export default Navbar
