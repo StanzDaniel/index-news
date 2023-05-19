@@ -63,12 +63,12 @@ export const NavbarContext = createContext<NavItem[]>([]);
 
 type Props = {
   value: NavItem[],
+  isMobile?: boolean,
 }
 
-function Navbar({value}: Props) {
+function Navbar({value, isMobile}: Props) {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const isMobile: boolean = window.innerWidth < 768;
 
   useEffect(() => {
     let scrollPosition = window.scrollY;
@@ -85,7 +85,7 @@ function Navbar({value}: Props) {
         <div className='logo'>
           <img
             src='src\assets\logo.svg'
-            alt='logotipe'
+            alt='logotype'
             className='logo-image'
           />
         </div>
@@ -94,6 +94,7 @@ function Navbar({value}: Props) {
           <DropdownMenu setIsVisible={setIsDropdownOpen} />
           ) : (
             <div
+              role="toggleDropdown"
               className='hamburguer-menu'
               onClick={() => setIsDropdownOpen(true)}>
               <img src='src\assets\hamburguerMenu.svg' alt='abrir menu' />
@@ -109,4 +110,4 @@ function Navbar({value}: Props) {
     </NavbarContext.Provider>
   );
 }
-export default Navbar
+export default Navbar 

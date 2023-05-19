@@ -32,9 +32,11 @@ const navItems: NavItem[] = [
 
 
 function NewsPage() {
+  const isMobile: boolean = window.innerWidth < 768;
+
   return (
     <>
-      <Navbar value={navItems}/>
+      <Navbar value={navItems} isMobile={isMobile}/>
       <Slider />
     </>
   )
