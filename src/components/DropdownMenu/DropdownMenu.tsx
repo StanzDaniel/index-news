@@ -1,5 +1,5 @@
-import closeIcon from "@/assets/close_icon.svg";
 import { useClickOutside } from "@/hooks";
+import closeIcon from "@/assets/close_icon.svg";
 import { COLORS } from "@/models";
 import { useRef } from "react";
 import styled from "styled-components";
@@ -37,7 +37,7 @@ function DropdownMenu({setIsVisible}: Props) {
   useClickOutside(dropdownRef, setIsVisible)
 
   return (
-    <DropdownContainer ref={dropdownRef}>
+    <DropdownContainer data-testid="dropdownMenu" ref={dropdownRef}>
       <div className="close-dropdown" onClick={() => setIsVisible(false)}>
         <img src={closeIcon} alt="Cerrar menu" />
       </div>

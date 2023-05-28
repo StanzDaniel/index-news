@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import { NewsPage } from "./pages"
+import { NewsPage, NewsPageProvider } from "./pages"
 
 function App() {
   return (
