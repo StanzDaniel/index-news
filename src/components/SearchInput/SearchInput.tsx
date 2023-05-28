@@ -47,7 +47,7 @@ function SearchInput({placeholder}: Props) {
   return (
     <SearchContainer>
       <span className="search-label">
-        <img src={"@/assets/search_icon.svg"} alt="find" className="search-icon" />
+        <img src={searchIcon} alt="find" className="search-icon" />
       </span>
       <input className="search-input" placeholder={placeholder} />
     </SearchContainer>

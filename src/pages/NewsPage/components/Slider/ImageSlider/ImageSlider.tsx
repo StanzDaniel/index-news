@@ -17,6 +17,7 @@ const ImageSliderContainer = styled.div`
     position: relative;
     height: 100%;
     width: 100%;
+    cursor: pointer;
   }
   
   &.loaded {
@@ -66,41 +67,42 @@ const NewsTitle = styled.h2`
   text-align: right;
   border-radius: inherit;
   font-size: 24px;
-  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 type Props = {
-  images: string[],
+  images: any,
 }
 
+
 function ImageSlider({images}: Props) {
+
+  console.log({IMAGES: images})
 
   const {selectedIndex, loaded, setLoaded} = useContext(SliderContext);
   const isMobile: boolean = window.innerWidth < 768;
 
-  const selectedImage = images[selectedIndex];
+  const selectedImage = { ...images[selectedIndex]};
   const prevIndex = selectedIndex - 1 < 0 ? images.length - 1 : selectedIndex - 1;
-  const prevImage = images[prevIndex];
+  const prevImage = {...images[prevIndex]};
 
   const nextIndex = selectedIndex + 1 > images.length - 1 ? 0 : selectedIndex + 1;
-  const nextImage = images[nextIndex];
+  const nextImage = {...images[nextIndex]};
 
-  const handleOnLoadImage = () => {
-    return setLoaded(true);
-  }
+  const handleOnLoadImage = () => setLoaded(true);
 
   return (
     <ImageSliderContainer className={`${loaded && 'loaded'}`}>
-      {!isMobile && <PrevImage src={`src/assets/img/${prevImage}`} alt='image of the news' /> }
-      <div className="main-image">
+      {!isMobile && <PrevImage src={prevImage.urlToImage} alt='image of the news' /> }
+      <div className="main-image" onClick={() => window.open(selectedImage.url)} >
         <Image
-          src={`src/assets/img/${selectedImage}`}
+          src={selectedImage.urlToImage}
           alt='image of the news'
           onLoad={handleOnLoadImage}
         />
-        <NewsTitle>{'titulo de la noticia'}</NewsTitle>
+        <NewsTitle>{selectedImage.title}</NewsTitle>
       </div>
-      {!isMobile && <PrevImage src={`src/assets/img/${nextImage}`} alt='image of the news' /> }
+      {!isMobile && <PrevImage src={nextImage.urlToImage} alt='image of the news' /> }
     </ImageSliderContainer>
   );
 }

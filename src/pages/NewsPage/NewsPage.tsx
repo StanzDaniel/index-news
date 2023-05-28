@@ -1,6 +1,7 @@
 import { Navbar } from "@/components";
-import { Slider } from "./components";
 import { NavItem } from "@/models";
+import { Cards, NewsPageContent, Slider } from "./components";
+import { NewsPageProvider } from "./context";
 
 const navItems: NavItem[] = [
   {
@@ -31,14 +32,20 @@ const navItems: NavItem[] = [
 ];
 
 
+
+
 function NewsPage() {
   const isMobile: boolean = window.innerWidth < 768;
-
+  
+  
   return (
-    <>
-      <Navbar value={navItems} isMobile={isMobile}/>
-      <Slider />
-    </>
-  )
+    <NewsPageProvider>
+      <Navbar value={navItems} isMobile={isMobile} />
+      <NewsPageContent>
+        <Slider />
+        <Cards />
+      </NewsPageContent>
+    </NewsPageProvider>
+  );
 };
 export default NewsPage;

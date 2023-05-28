@@ -49,7 +49,7 @@ function ProfileImage({showName, user, onClick}: ImageProps) {
   return (
     <ImageContainer onClick={onClick}>
       {showName && <h3 className="profile-name">{user ? user.name : "anónimo"}</h3>}
-      <img src={user ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="image de perfil" className="profile-image" />
+      <img src={user ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
     </ImageContainer>
   )
 }

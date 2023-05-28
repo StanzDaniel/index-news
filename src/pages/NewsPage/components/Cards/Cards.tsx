@@ -1,20 +1,27 @@
 import styled from "styled-components"
 import Card from "./Card";
+import { useNewsPageContext } from "../../context";
 
 const CardsContainer = styled.div`
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
-  flex-flow: row wrap;
-  gap: 30px;
-  justify-content: space-evenly;
-
-`
-const cards = ["Card 1", "Card 2", "Card 3", "Card 4", "Card 5", "Card 6", "Card 7", "Card 8", "Card 9", "Card 10"];
-
+  flex-direction: column;
+  justify-content: space-around;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    padding: 0 40px;
+  }
+`;
 function Cards() {
+  const { newsPageContextValue } = useNewsPageContext();
+
+
   return (
     <CardsContainer>
-      {cards.map((card, index) => <Card key={index} title={card}/>)}
+      { newsPageContextValue.map((card: any, index) => <Card key={index} title={card.title} image={card.urlToImage} description={card.description} onClick={() => window.open(card.url)}/>)}
     </CardsContainer>
   )
 }
