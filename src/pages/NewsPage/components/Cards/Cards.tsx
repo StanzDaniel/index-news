@@ -16,12 +16,12 @@ const CardsContainer = styled.div`
   }
 `;
 function Cards() {
-  const { newsPageContextValue } = useNewsPageContext();
+  const newsPageContext = useNewsPageContext();
 
 
   return (
     <CardsContainer>
-      { newsPageContextValue.map((card: any, index) => <Card key={index} title={card.title} image={card.urlToImage} description={card.description} onClick={() => window.open(card.url)}/>)}
+      { newsPageContext.contextValue.map((card: any, index) => <Card key={index} title={card.title} image={card.urlToImage} description={card.description} onClick={() => window.open(card.url)}/>)}
     </CardsContainer>
   )
 }

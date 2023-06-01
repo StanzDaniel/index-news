@@ -77,8 +77,6 @@ type Props = {
 
 function ImageSlider({images}: Props) {
 
-  console.log({IMAGES: images})
-
   const {selectedIndex, loaded, setLoaded} = useContext(SliderContext);
   const isMobile: boolean = window.innerWidth < 768;
 

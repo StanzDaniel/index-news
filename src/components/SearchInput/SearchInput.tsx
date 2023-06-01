@@ -1,6 +1,8 @@
 import styled from "styled-components"
 import searchIcon from "@/assets/search_icon.svg";
 import { COLORS } from "@/models";
+import { useState } from "react";
+import { useNavbarContext } from "@/context";
 
 const SearchContainer = styled.form`
   width: 100%;
@@ -39,17 +41,26 @@ const SearchContainer = styled.form`
   }
 `;
 
-interface Props {
-  placeholder: string;
-}
+function SearchInput({handleSubmit}: {handleSubmit: (text: string) => void}) {
+  const [inputText, setInputText] = useState("");
+  const [placeholder, setPlaceholder] = useState("search");
 
-function SearchInput({placeholder}: Props) {
+  const navbarContext = useNavbarContext();
+
+  const submitInfo = (event: React.FormEvent) => {
+    event.preventDefault();
+    handleSubmit(inputText);
+    setPlaceholder(inputText);
+    setInputText("");
+    navbarContext.setContextValue(false);
+  }
+
   return (
-    <SearchContainer>
+    <SearchContainer onSubmit={(e) => submitInfo(e)}>
       <span className="search-label">
         <img src={searchIcon} alt="find" className="search-icon" />
       </span>
-      <input className="search-input" placeholder={placeholder} />
+      <input className="search-input" placeholder={placeholder} value={inputText} onChange={(e) => setInputText(e.target.value)} />
     </SearchContainer>
   )
 }

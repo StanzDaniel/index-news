@@ -1,7 +1,6 @@
-import { COLORS, NavItem } from "@/models";
-import { useContext } from "react";
+import { COLORS } from "@/models";
+import { ReactNode } from "react";
 import styled from "styled-components";
-import { NavbarContext } from "../Navbar/Navbar";
 import { SearchInput } from "../SearchInput";
 
 const NavListContainer = styled.ul`
@@ -36,39 +35,17 @@ const NavListContainer = styled.ul`
 
 `;
 
-export const NavItemComponent = styled.li`
-  color: #525252;
-  transition: color 0.4s ease;
-  cursor: pointer;
-  white-space: nowrap;
-  font-size: 12px;
-  transition: transform 0.25s ease,
-              color 0.4s ease;
 
-  &.active {
-    color: ${COLORS.SECONDARY_COLOR};
-  }
+interface Props {
+  children: ReactNode,
+  submitSearchInput: (text: string) => void
+};
 
-  &:hover {
-    color: ${COLORS.SECONDARY_COLOR};
-    transform: scale(1.25);
-  }
-`;
-
-function NavList() {
-  const navItems = useContext(NavbarContext);
-
+function NavList({children, submitSearchInput}: Props) {
   return (
     <NavListContainer>
-      <SearchInput placeholder={'search'} />
-      {navItems.map((item: NavItem) => (
-        <NavItemComponent
-          key={item.title}
-          className={`nav-item ${item.active ? 'active' : ''}`}
-          onClick={() => item.handlerClick(item.title)}>
-          {item.title}
-        </NavItemComponent>
-      ))}
+      <SearchInput handleSubmit={submitSearchInput} />
+      {children}
     </NavListContainer>
   );
 }

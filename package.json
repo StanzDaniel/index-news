@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reactivex/rxjs": "^6.6.7",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
+    "rxjs": "^7.8.1",
     "styled-components": "^5.3.9"
   },
   "devDependencies": {

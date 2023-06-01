@@ -1,18 +1,17 @@
-import { createContext, useContext, useState } from "react";
-import { InitialState } from "../models/NewsPageContext.model";
+import { ContextTypes } from "@/interfaces";
+import { ReactNode, createContext, useContext, useState } from "react";
 
 const initialState = {
-  newsPageContextValue: [''],
-  setNewsPageContextValue: () => {},
+  contextValue: [''],
+  setContextValue: () => {},
 }
 
-export const NewsPageContext = createContext<InitialState>(initialState);
+export const NewsPageContext = createContext<ContextTypes<string[]>>(initialState);
 
-export const NewsPageProvider = ({ children }: any) => {
-  const [newsPageContextValue, setNewsPageContextValue] = useState<string[]>([]);
-  console.log({STATE: newsPageContextValue})
+export const NewsPageProvider = ({children}: {children: ReactNode}) => {
+  const [contextValue, setContextValue] = useState<string[]>([]);
   return (
-    <NewsPageContext.Provider value={{ newsPageContextValue, setNewsPageContextValue }}>
+    <NewsPageContext.Provider value={{ contextValue, setContextValue }}>
       { children }
     </NewsPageContext.Provider>
   );

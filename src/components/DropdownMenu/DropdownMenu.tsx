@@ -1,9 +1,9 @@
-import { useClickOutside } from "@/hooks";
 import closeIcon from "@/assets/close_icon.svg";
+import { useNavbarContext } from "@/context";
+import { useClickOutside } from "@/hooks";
 import { COLORS } from "@/models";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import styled from "styled-components";
-import { NavList } from "../NavList";
 import { Profile } from "../Profile";
 
 const DropdownContainer = styled.div`
@@ -27,22 +27,18 @@ const DropdownContainer = styled.div`
   }
 `;
 
-interface Props { 
-  setIsVisible: (param: boolean) => void;
-}
-
-function DropdownMenu({setIsVisible}: Props) {
+function DropdownMenu({children}: {children: ReactNode}) {
   const dropdownRef = useRef(null);
+  const navbarContext = useNavbarContext();
   
-  useClickOutside(dropdownRef, setIsVisible)
-
+  useClickOutside(dropdownRef, navbarContext.setContextValue)
   return (
     <DropdownContainer data-testid="dropdownMenu" ref={dropdownRef}>
-      <div className="close-dropdown" onClick={() => setIsVisible(false)}>
+      <div className="close-dropdown" onClick={() => navbarContext.setContextValue(false)}>
         <img src={closeIcon} alt="Cerrar menu" />
       </div>
       <Profile showName={true}/>
-      <NavList />
+      {children}
     </DropdownContainer>
   )
 }

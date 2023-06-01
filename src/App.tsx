@@ -1,5 +1,9 @@
 import { Suspense } from "react"
-import { NewsPage, NewsPageProvider } from "./pages"
+import { NewsPage } from "./pages"
+import AxiosInterceptor from "./interceptors/axios.interceptor";
+
+AxiosInterceptor();
+
 
 function App() {
   return (

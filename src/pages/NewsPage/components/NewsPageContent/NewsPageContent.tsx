@@ -1,25 +1,41 @@
 import { useEffect, useState } from "react";
 import { useNewsPageContext } from "../../context";
-import callAPI from "@/services/callAPI.service";
+import { sharingInfoNavItems, sharingInfoSearchNews } from "@/services";
+import { searchNewsFetch } from "../../services";
+import { topNewsFetch } from "../../services";
+import { LoadingSpinner } from "@/components";
 
 function NewsPageContent({children}: any) {  
   const [isLoadedData, setIsLoadedData ] = useState(false);
-  const { setNewsPageContextValue } = useNewsPageContext()
+  const newsPageContext = useNewsPageContext()
 
-  const fetchData = async () => {
-    const response = await callAPI();    
-    setNewsPageContextValue(response.data.articles);
+  const NavItemsSubscription$ = sharingInfoNavItems.getSubject();
+  const SearchNewsSubscription$ = sharingInfoSearchNews.getSubject();
+
+
+  const fetchData = async (value: {}) => {
+    setIsLoadedData(false);
+    const response = await topNewsFetch(value);    
+    newsPageContext.setContextValue(response.data.articles);
     setIsLoadedData(true);
-    console.log({REPONSE: response.data.articles});
+  };
+
+  const searchNews = async (value: {}) => {
+    setIsLoadedData(false);
+    const response = await searchNewsFetch(value);    
+    newsPageContext.setContextValue(response.data.articles);
+    setIsLoadedData(true);
   };
   
   useEffect(() => {
     setIsLoadedData(false);
-    fetchData();
+    NavItemsSubscription$.subscribe(data => data ? fetchData(data) : null)
+    SearchNewsSubscription$.subscribe(data => data ? searchNews(data) : null)
+    fetchData("general");
   }, [])
   
   if (!isLoadedData) {
-    return (<div>Loading...</div>);
+    return (<LoadingSpinner />);
   } else {
     return (
       <>

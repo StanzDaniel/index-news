@@ -30,9 +30,9 @@ function Slider() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  const { newsPageContextValue } = useNewsPageContext();
+  const newsPageContext = useNewsPageContext();
 
-  const images = newsPageContextValue.slice(0, 10);
+  const images = newsPageContext.contextValue.slice(0, 10);
     
   useEffect(() => {
       const interval = setInterval(() => handlerSlider(DIRECTION.NEXT), 6000);

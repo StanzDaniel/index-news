@@ -1,1 +1,1 @@
-export * from './callAPI.service';
+export * from './sharingInfoNavItems.service';

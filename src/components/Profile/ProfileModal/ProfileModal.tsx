@@ -1,9 +1,9 @@
 import { COLORS } from "@/models";
 import styled from "styled-components"
 import ProfileImage from "../ProfileImage/ProfileImage";
-import { NavItemComponent } from "@/components/NavList/NavList";
 import { useRef } from "react";
 import { useClickOutside } from "@/hooks";
+import { NavItem } from "@/components";
 
 const ModalContainer = styled.div`
   display: flex;
@@ -33,12 +33,16 @@ function ProfileModal({ onClick}: Props) {
   const modalRef = useRef(null);
   useClickOutside(modalRef, onClick);
 
+  const handleClick = (text: string) => {
+    console.log(text);
+  }
+
   return (
     <ModalContainer ref={modalRef}>
       <ProfileImage showName={true} onClick={onClick}/>
-      <NavItemComponent>{"Favoritos"}</NavItemComponent>
-      <NavItemComponent>{"Settings"}</NavItemComponent>
-      <NavItemComponent>{"Logout"}</NavItemComponent>
+      <NavItem click={handleClick} value="saved">{"saved"}</NavItem>
+      <NavItem click={handleClick} value="settings">{"settings"}</NavItem>
+      <NavItem click={handleClick} value="logout">{"logout"}</NavItem>
     </ModalContainer>
   )
 }
