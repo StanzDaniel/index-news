@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { SliderContext } from "../Slider";
+import { mobileCheck } from "@/utilities";
 
 const ImageSliderContainer = styled.div`
   position: relative;
@@ -70,17 +71,12 @@ const NewsTitle = styled.h2`
   text-overflow: ellipsis;
 `;
 
-type Props = {
-  images: any,
-}
+function ImageSlider() {
 
+  const {selectedIndex, loaded, setLoaded, images} = useContext(SliderContext);
+  const isMobile = mobileCheck();
 
-function ImageSlider({images}: Props) {
-
-  const {selectedIndex, loaded, setLoaded} = useContext(SliderContext);
-  const isMobile: boolean = window.innerWidth < 768;
-
-  const selectedImage = { ...images[selectedIndex]};
+  const selectedImage = {...images[selectedIndex]};
   const prevIndex = selectedIndex - 1 < 0 ? images.length - 1 : selectedIndex - 1;
   const prevImage = {...images[prevIndex]};
 

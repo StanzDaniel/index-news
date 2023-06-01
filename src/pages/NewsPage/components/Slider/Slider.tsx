@@ -20,6 +20,7 @@ const SliderContainer = styled.div`
 `;
 
 export const SliderContext = createContext<DefaultSliderValues>({
+  images: [],
   selectedIndex: 0,
   loaded: false,
   setLoaded: () => {},
@@ -32,7 +33,7 @@ function Slider() {
 
   const newsPageContext = useNewsPageContext();
 
-  const images = newsPageContext.contextValue.slice(0, 10);
+  const images = newsPageContext.contextValue.slice(0, 5);
     
   useEffect(() => {
       const interval = setInterval(() => handlerSlider(DIRECTION.NEXT), 6000);
@@ -53,9 +54,9 @@ function Slider() {
   };
   
   return (
-    <SliderContext.Provider value={{ selectedIndex, loaded, setLoaded, handlerSlider}}>
+    <SliderContext.Provider value={{ images, selectedIndex, loaded, setLoaded, handlerSlider}}>
       <SliderContainer>
-        <ImageSlider images={images} />
+        <ImageSlider />
         <ArrowButton direction={DIRECTION.PREV} />
         <ArrowButton direction={DIRECTION.NEXT} />
       </SliderContainer>

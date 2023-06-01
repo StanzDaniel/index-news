@@ -4,6 +4,7 @@ export enum DIRECTION {
 };
 
 export interface DefaultSliderValues {
+  images: any;
   selectedIndex: number,
   loaded: boolean,
   setLoaded: (param: boolean) => void,

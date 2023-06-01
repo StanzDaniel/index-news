@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNewsPageContext } from "../../context";
 import { sharingInfoNavItems, sharingInfoSearchNews } from "@/services";
-import { searchNewsFetch } from "../../services";
-import { topNewsFetch } from "../../services";
+import { searchNewsFetch, topNewsFetch } from "../../services";
 import { LoadingSpinner } from "@/components";
 
 function NewsPageContent({children}: any) {  
