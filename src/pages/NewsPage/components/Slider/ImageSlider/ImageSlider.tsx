@@ -87,16 +87,16 @@ function ImageSlider() {
 
   return (
     <ImageSliderContainer className={`${loaded && 'loaded'}`}>
-      {!isMobile && <PrevImage src={prevImage.urlToImage} alt='image of the news' /> }
+      {!isMobile && <PrevImage src={prevImage.urlToImage ? prevImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
       <div className="main-image" onClick={() => window.open(selectedImage.url)} >
         <Image
-          src={selectedImage.urlToImage}
+          src={selectedImage.urlToImage ? selectedImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"}
           alt='image of the news'
           onLoad={handleOnLoadImage}
         />
         <NewsTitle>{selectedImage.title}</NewsTitle>
       </div>
-      {!isMobile && <PrevImage src={nextImage.urlToImage} alt='image of the news' /> }
+      {!isMobile && <PrevImage src={nextImage.urlToImage ? nextImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
     </ImageSliderContainer>
   );
 }

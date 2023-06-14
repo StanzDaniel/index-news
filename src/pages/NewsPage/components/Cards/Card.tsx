@@ -58,7 +58,7 @@ function Card(props: any) {
   return (
     <CardContainer onClick={props.onClick} >
       <CardTitle>{props.title}</CardTitle>
-      <CardImage src={props.image} alt="" />
+      <CardImage src={props.image ? props.image : "src/assets/img/no_image_avaliable.jpg"} alt="" />
       <CardFooter />
     </CardContainer>
   )
