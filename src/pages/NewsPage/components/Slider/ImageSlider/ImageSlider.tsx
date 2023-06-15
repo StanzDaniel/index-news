@@ -93,10 +93,14 @@ function ImageSlider() {
           src={selectedImage.urlToImage ? selectedImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"}
           alt='image of the news'
           onLoad={handleOnLoadImage}
+          onError={({currentTarget}) => {
+            currentTarget.onerror = null;
+            currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
+          }}
         />
         <NewsTitle>{selectedImage.title}</NewsTitle>
       </div>
-      {!isMobile && <PrevImage src={nextImage.urlToImage ? nextImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
+      {!isMobile && <PrevImage src={nextImage.urlToImage ? nextImage.urlToImage : "src/assets/img/no_image_avaliable.jpg" } alt='image of the news' /> }
     </ImageSliderContainer>
   );
 }

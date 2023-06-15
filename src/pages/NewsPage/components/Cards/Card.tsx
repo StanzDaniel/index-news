@@ -58,7 +58,10 @@ function Card(props: any) {
   return (
     <CardContainer onClick={props.onClick} >
       <CardTitle>{props.title}</CardTitle>
-      <CardImage src={props.image ? props.image : "src/assets/img/no_image_avaliable.jpg"} alt="" />
+      <CardImage src={props.image ? props.image : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
+        currentTarget.onerror = null;
+        currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
+      }}/>
       <CardFooter />
     </CardContainer>
   )
