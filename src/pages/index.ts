@@ -1,4 +1,7 @@
+export * from './Login';
 export * from './NewsPage/components/Cards';
+export * from './NewsPage/components/NavbarNewsPage';
+export * from './NewsPage/components/NewsPageContent';
 export * from './NewsPage/components/Slider/ArrowButton';
 export * from './NewsPage/components/Slider/ImageSlider';
 export * from './NewsPage/components/Slider';
@@ -6,3 +9,4 @@ export * from './NewsPage/components';
 export * from './NewsPage/context';
 export * from './NewsPage';
 export * from './NewsPage/models';
+export * from './NewsPage/services';
