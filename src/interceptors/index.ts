@@ -1,1 +1,1 @@
-export {default as axios} from './axios.interceptor';
+export {default as AxiosInterceptor} from './axios.interceptor';

@@ -1,8 +1,9 @@
 import { DropdownMenu, Profile } from "@/components";
 import { useNavbarContext } from "@/context";
-import { COLORS } from "@/models";
+import { COLORS, PublicRoutes } from "@/models";
 import { mobileCheck } from "@/utilities";
 import { ReactNode, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.nav`
@@ -79,13 +80,13 @@ function NavbarContainer({children}: {children: ReactNode}) {
 
   return (
     <Container className={!isNavVisible ? 'hidden' : ''}>
-      <div className='logo'>
+      <Link to={`/${PublicRoutes.HOME}`} className='logo'>
         <img
           src='src\assets\logo.svg'
           alt='logotype'
           className='logo-image'
         />
-      </div>
+      </Link>
       {isMobile ? (
         navbarContext.contextValue ? (
         <DropdownMenu >{children}</DropdownMenu>

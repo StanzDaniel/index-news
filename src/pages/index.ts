@@ -10,3 +10,6 @@ export * from './NewsPage/context';
 export * from './NewsPage';
 export * from './NewsPage/models';
 export * from './NewsPage/services';
+export * from './Private/Dashboard';
+export * from './Private';
+export * from './Register';
