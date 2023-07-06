@@ -5,19 +5,18 @@ import { ProfileModal } from "./ProfileModal";
 
 export interface ProfileProps {
   showName: boolean,
-  user?: {name: string, image: string},
 }
 
-function Profile({showName, user}: ProfileProps) {
+function Profile({showName}: ProfileProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const handlerModal = () => {
     setIsModalOpen(!isModalOpen);
   }
 
   return (
     <>
-      <ProfileImage showName={showName} user={user} onClick={handlerModal}/>
+      <ProfileImage showName={showName} onClick={handlerModal}/>
       {isModalOpen && <ProfileModal onClick={handlerModal}/>}
     </>
   )

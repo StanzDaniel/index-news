@@ -1,7 +1,7 @@
 import { User } from "@/interfaces";
 import { createSlice } from "@reduxjs/toolkit";
 
-const userEmptyState: User = {
+export const userEmptyState: User = {
   name: '',
   email: '',
   password: '',
@@ -9,14 +9,20 @@ const userEmptyState: User = {
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: userEmptyState,
+  initialState: JSON.parse(localStorage.getItem('user') || '{}' ) || userEmptyState,
   reducers: {
-    createUser: (state, action) => action.payload,
+    createUser: (state, action) => {
+      localStorage.setItem('user', JSON.stringify(action.payload));
+      return action.payload;
+    },
     updateUser: (state, action) => ({...state, ...action.payload}),
-    deleteUser: () => userEmptyState,
+    logoutUser: () => {
+      localStorage.clear();
+      return userEmptyState;
+    }
   },
 })
 
-export const {createUser, updateUser, deleteUser} = userSlice.actions;
+export const {createUser, updateUser, logoutUser} = userSlice.actions;
 
 export default userSlice.reducer;

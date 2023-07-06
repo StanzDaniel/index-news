@@ -6,6 +6,7 @@ import { LoadingSpinner } from "./components";
 import { AxiosInterceptor } from "./interceptors";
 import { Provider } from "react-redux";
 import { store } from "./redux";
+import PublicGuard from "./utilities/PublicGuard.utility";
 
 const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const Login = lazy(() => import('./pages/Login/Login'));
@@ -20,10 +21,12 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <RoutesWithNotFound>
-            <Route path="/" element={<Navigate replace to={PublicRoutes.HOME}/>} />   
+            <Route path="/" element={<Navigate replace to={PublicRoutes.HOME}/>} />
             <Route path={PublicRoutes.HOME} element={<NewsPage />} />
-            <Route path={PublicRoutes.LOGIN} element={<Login />} />
-            <Route path={PublicRoutes.REGISTER} element={<Register />} />
+            <Route element={<PublicGuard/>}>   
+              <Route path={PublicRoutes.LOGIN} element={<Login />} />
+              <Route path={PublicRoutes.REGISTER} element={<Register />} />
+            </Route>
             <Route element={<AuthGuard/>}>
               <Route path={`${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
             </Route>

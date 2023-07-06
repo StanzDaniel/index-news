@@ -38,13 +38,13 @@ const NavListContainer = styled.ul`
 
 interface Props {
   children: ReactNode,
-  submitSearchInput: (text: string) => void
+  submitSearchInput?: (text: string) => void
 };
 
 function NavList({children, submitSearchInput}: Props) {
   return (
     <NavListContainer>
-      <SearchInput handleSubmit={submitSearchInput} />
+      {submitSearchInput ? <SearchInput handleSubmit={submitSearchInput} /> : null}
       {children}
     </NavListContainer>
   );

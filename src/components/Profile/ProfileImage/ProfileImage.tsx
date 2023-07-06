@@ -1,6 +1,7 @@
 import { COLORS } from "@/models";
 import styled from "styled-components";
 import { ProfileProps } from "../Profile";
+import { useSelector } from "react-redux";
 
 const ImageContainer = styled.div`
   align-self: end;
@@ -45,11 +46,13 @@ interface ImageProps extends ProfileProps {
   onClick?: () => void;
 }
 
-function ProfileImage({showName, user, onClick}: ImageProps) {
+function ProfileImage({showName, onClick}: ImageProps) {
+  const user = useSelector((store: any)=> store.user)
+
   return (
     <ImageContainer onClick={onClick}>
-      {showName && <h3 className="profile-name">{user ? user.name : "anónimo"}</h3>}
-      <img src={user ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
+      {showName && <h3 className="profile-name">{user.name ? user.name : "unknown"}</h3>}
+      <img src={user.image ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
     </ImageContainer>
   )
 }
