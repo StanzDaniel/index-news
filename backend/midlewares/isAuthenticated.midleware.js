@@ -1,16 +1,28 @@
 import express from "express";
-import { expressjwt } from "express-jwt"
+import jwt from "jsonwebtoken";
 import { SECRET } from "../models/secret.model.js";
 import { User } from "../database/models.database.js";
 
-export const validateJwt = expressjwt({secret: SECRET.JWT, algorithms: ['HS256']});
+export const validateJwt = (req, res, next) => {
+  const token = req.header('authorization');
+
+  jwt.verify(token, SECRET.JWT, (err, id ) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
+    req.body.auth = id;
+  })
+
+  next();
+}
+
 
 const assignUser = async (req, res, next) => {
   try {
-      const id = req.auth;
+      const id = req.body.auth;
       const user = await User.findById(id);
-      if (!user) return res.sendStatus(500);
-      req.user = user;
+      if (!user) throw new Error('user not found');
+      req.body.user = user;
       next();
   } catch (error) {
     next(error);

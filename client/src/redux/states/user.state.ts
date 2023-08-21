@@ -1,28 +1,38 @@
 import { User } from "@/interfaces";
+import { loginUser } from "@/pages/Login/services";
+import { validateToken } from "@/services";
+
 import { createSlice } from "@reduxjs/toolkit";
+import { AxiosResponse } from "axios";
+import { useEffect, useState } from "react";
 
 export const userEmptyState: User = {
   name: '',
+  lastName: '',
+  userName: '',
   email: '',
   password: '',
+  image: '',
+  token: '',
 }
+
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: JSON.parse(localStorage.getItem('user') || '{}' ) || userEmptyState,
+  initialState: userEmptyState,
   reducers: {
-    createUser: (state, action) => {
-      localStorage.setItem('user', JSON.stringify(action.payload));
+    loadUser: (state, action) => {
       return action.payload;
     },
     updateUser: (state, action) => ({...state, ...action.payload}),
     logoutUser: () => {
-      localStorage.clear();
+      //eliminar cookie token
+      document.cookie = `token=; max-age=0;`; 
       return userEmptyState;
     }
   },
 })
 
-export const {createUser, updateUser, logoutUser} = userSlice.actions;
+export const {loadUser, updateUser, logoutUser} = userSlice.actions;
 
 export default userSlice.reducer;

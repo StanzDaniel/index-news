@@ -17,7 +17,7 @@ function NewsPageContent({children}: any) {
     const response = await topNewsFetch(value);    
     newsPageContext.setContextValue(response.data.articles);
     setIsLoadedData(true);
-  };
+  }; 
 
   const searchNews = async (value: {}) => {
     setIsLoadedData(false);

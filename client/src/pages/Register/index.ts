@@ -1,2 +1,5 @@
 export { default as Register } from './Register';
-export { default as RegisterForm } from './RegisterForm';
+export * from './components/NavbarRegister';
+export * from './components/RegisterForm';
+export * from './components';
+export * from './services';

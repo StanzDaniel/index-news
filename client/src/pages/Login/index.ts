@@ -1,2 +1,4 @@
 export { default as Login } from './Login';
-export { default as LoginForm } from './LoginForm';
+export * from './components/LoginForm';
+export * from './components/NavbarLogin';
+export * from './components';

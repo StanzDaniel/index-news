@@ -39,8 +39,6 @@ function ProfileModal({ onClick }: Props) {
   const user = useSelector((store: any)=> store.user)
   const dispatch = useDispatch()
 
-  console.log({USER: user})
-
   useClickOutside(modalRef, onClick);
 
   const handleClick = (text: string) => {

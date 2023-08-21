@@ -13,9 +13,15 @@ import { registerValidation } from './validators/register.validator.js';
 import { updateValidation } from './validators/update.validator.js';
 import { changePasswordValidation } from './validators/changePassword.validator.js';
 import { changePassword } from './midlewares/changePassword.midleware.js';
+import cors from 'cors';
+import { returnUser } from './midlewares/returnUser.midleware.js';
 
 const app = express();
+
+app.use(cors())
+
 app.use(express.json());
+
 
 await connect(SECRET.BD_CREDENTIALS)
 
@@ -23,6 +29,7 @@ app.use(auth); // access control
 
 app.post('/register', registerValidation, registerUser);
 app.post('/login', loginValidation, loginUser);
+app.post('/validate', isAuthenticated, returnUser)
 app.post('/deleteuser', isAuthenticated, deleteUser);
 app.post('/updateuser', isAuthenticated, updateValidation, updateUser);
 app.post('/changepassword', isAuthenticated, changePasswordValidation, changePassword);

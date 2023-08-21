@@ -2,9 +2,10 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter, Navigate, Route } from "react-router-dom";
 import { PrivateRoutes, PublicRoutes } from "./models";
 import { AuthGuard, RoutesWithNotFound } from "./utilities";
+
+import { Provider } from "react-redux";
 import { LoadingSpinner } from "./components";
 import { AxiosInterceptor } from "./interceptors";
-import { Provider } from "react-redux";
 import { store } from "./redux";
 import PublicGuard from "./utilities/PublicGuard.utility";
 

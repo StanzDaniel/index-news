@@ -1,6 +1,7 @@
 export * from './Button';
 export * from './DropdownMenu';
 export * from './Form/InputUser';
+export * from './Form/ModalError';
 export * from './Form';
 export * from './LoadingSpinner';
 export * from './NavList/NavItem';
@@ -11,3 +12,4 @@ export * from './Profile/ProfileImage';
 export * from './Profile/ProfileModal';
 export * from './Profile';
 export * from './SearchInput';
+export * from './SuccessfulModal';

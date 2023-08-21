@@ -11,10 +11,10 @@ const CenterContainer = styled.div`
   align-items: center;  
 `;
 
-const Spinner = styled.div`
-  border: 5px solid rgba(0, 0, 0, 0.1);
-  width: 40px;
-  height: 40px;
+export const Spinner = styled.div<{size?: number}>`
+  border: ${props => props.size && props.size < 20 ? 3 : 5}px solid rgba(0, 0, 0, 0.1);
+  width: ${props => props.size || 40}px;
+  height: ${props => props.size || 40}px;
   border-radius: 50%;
   border-left-color: ${COLORS.SECONDARY_COLOR};
 
@@ -31,11 +31,10 @@ const Spinner = styled.div`
   }
 `;
 
-function LoadingSpinner() {
+export function LoadingSpinner() {
   return (
     <CenterContainer>
       <Spinner />
     </CenterContainer>
   )
 }
-export default LoadingSpinner

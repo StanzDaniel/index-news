@@ -1,35 +1,13 @@
-import { NavItem, NavList, Navbar } from "@/components"
-import { PublicRoutes } from "@/models"
-import RegisterForm from "./RegisterForm"
-import { useNavigate } from "react-router-dom";
-import { CenteredContainer } from "@/utilities";
-
+import { Suspense } from "react";
+import { NavbarRegister, RegisterForm } from "./components";
+import { LoadingSpinner } from "@/components";
 
 function Register() {
-  const navigate = useNavigate();
-
   return (
-    <>
-      <Navbar>
-        <NavList>
-          <NavItem
-            className={`nav-item`}
-            click={() => navigate(`../${PublicRoutes.LOGIN}`, { replace: true })}
-            value={'login'}>
-            {'Login Here'}
-          </NavItem>
-          <NavItem
-            className={`nav-item`}
-            click={() => navigate(`../${PublicRoutes.HOME}`, { replace: true })}
-            value={'unknown'}>
-            {'Still Unknown'}
-          </NavItem>
-        </NavList>
-      </Navbar>
-      <CenteredContainer>
-        <RegisterForm />
-      </CenteredContainer>
-    </>
+    <Suspense fallback={<LoadingSpinner />}>
+      <NavbarRegister/>
+      <RegisterForm />
+    </Suspense>
   );
 }
 export default Register
