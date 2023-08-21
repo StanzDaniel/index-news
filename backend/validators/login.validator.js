@@ -1,6 +1,5 @@
 import { body } from "express-validator";
 import { validateResults } from "../utilities/validateResults.utility.js";
-import { User } from "../database/models.database.js";
 
 export const loginValidation = [
   body('email')
@@ -10,16 +9,7 @@ export const loginValidation = [
     .toLowerCase()
     .isEmail()
     .withMessage('Not a valid e-mail address')
-    .escape()
-    .custom(async value => {
-      const existingUser = await User.findOne({ email: value });
-      if (!existingUser) {
-        throw new Error(
-          'You are not a registered user. Please confirm your email address or sign up!'
-        );
-      }
-      return true;
-    }),
+    .escape(),
   body('password')
     .exists()
     .trim()
