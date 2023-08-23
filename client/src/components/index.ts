@@ -8,6 +8,7 @@ export * from './NavList/NavItem';
 export * from './NavList';
 export * from './Navbar/NavbarContainer';
 export * from './Navbar';
+export * from './Profile/ProfileDetails';
 export * from './Profile/ProfileImage';
 export * from './Profile/ProfileModal';
 export * from './Profile';

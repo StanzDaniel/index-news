@@ -20,3 +20,7 @@ body {
 button {
   all: unset;
 }
+
+h3, p {
+  margin: 0;
+}
