@@ -24,3 +24,9 @@ button {
 h3, p {
   margin: 0;
 }
+
+a {
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+}

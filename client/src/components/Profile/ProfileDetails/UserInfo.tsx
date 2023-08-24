@@ -10,7 +10,7 @@ export function UserInfo() {
       <h3>{user.userName}</h3>
       <p>{`${user.lastName}, ${user.name}`}</p>
       <p>{user.email}</p>
-      <Link to={`${PrivateRoutes.SETTINGS}`}>edit profile</Link>
+      <Link to={`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SETTINGS}`}>edit profile</Link>
     </>
   );
 }

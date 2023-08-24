@@ -1,14 +1,13 @@
 import { ProfileDetails } from "@/components";
-import { database } from "@/models";
+import { PrivateRoutes, database } from "@/models";
 import { loadUser } from "@/redux";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavbarDashboard } from "./components";
+import { History, NavbarPrivate, Section } from "../../components";
 
 
-
-function Dashboard() {
+function HistoryPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,15 +24,19 @@ function Dashboard() {
       dispatch(loadUser(user.data));
     })
     .catch(err => {
-      document.cookie = `token=; max-age=0;`;
+      document.cookie = `token=; max-age=0; path=/`;
     });    
   }, [])
   
   return (
     <>
-      <NavbarDashboard />
+      <NavbarPrivate currentPage={PrivateRoutes.HISTORY} />
       <ProfileDetails />
+      <Section>
+        <h2>{"My History"}</h2>
+        <History />
+      </Section>
     </>
   )
 }
-export default Dashboard
+export default HistoryPage

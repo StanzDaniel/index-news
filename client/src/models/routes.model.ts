@@ -8,4 +8,6 @@ export const PrivateRoutes = {
   PRIVATE: 'private',
   DASHBOARD: 'dashboard',
   SETTINGS: 'settings',
+  HISTORY: 'history',
+  READLATER: 'readlater',
 }
