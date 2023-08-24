@@ -27,7 +27,7 @@ export const userSlice = createSlice({
     updateUser: (state, action) => ({...state, ...action.payload}),
     logoutUser: () => {
       //eliminar cookie token
-      document.cookie = `token=; max-age=0;`; 
+      document.cookie = `token=; max-age=0; path=/;`; 
       return userEmptyState;
     }
   },

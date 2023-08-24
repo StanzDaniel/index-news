@@ -4,7 +4,7 @@ import { ProfileModal } from "./ProfileModal";
 
 
 export interface ProfileProps {
-  showName: boolean,
+  showName?: boolean,
 }
 
 function Profile({showName}: ProfileProps) {

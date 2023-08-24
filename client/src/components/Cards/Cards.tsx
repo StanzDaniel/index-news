@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { useNewsPageContext } from "../../pages/NewsPage/context";
 import Card from "./Card";
-import { useNewsPageContext } from "../../context";
+import { CenteredContainer } from "@/utilities";
 
-const CardsContainer = styled.div`
+export const CardsContainer = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -18,7 +19,8 @@ const CardsContainer = styled.div`
 function Cards() {
   const newsPageContext = useNewsPageContext();
 
-  const news = newsPageContext.contextValue.slice(5);
+  const news = newsPageContext.contextValue;
+  console.log(news)
 
   return (
     <CardsContainer>

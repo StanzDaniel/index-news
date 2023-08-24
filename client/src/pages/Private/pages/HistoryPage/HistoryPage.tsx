@@ -1,17 +1,15 @@
-import { database } from "@/models";
+import { ProfileDetails } from "@/components";
+import { PrivateRoutes, database } from "@/models";
 import { loadUser } from "@/redux";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Cards, NewsPageContent, Slider } from "./components";
-import { NavbarNewsPage } from "./components/NavbarNewsPage";
-import { NewsPageProvider } from "./context";
+import { History, NavbarPrivate, Section } from "../../components";
 
 
-
-function NewsPage() {
+function HistoryPage() {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const token = document.cookie.replace("token=", "");
     axios
@@ -31,13 +29,14 @@ function NewsPage() {
   }, [])
   
   return (
-    <NewsPageProvider>
-      <NavbarNewsPage/>
-      <NewsPageContent>
-        <Slider />
-        <Cards />
-      </NewsPageContent>
-    </NewsPageProvider>
-  );
-};
-export default NewsPage;
+    <>
+      <NavbarPrivate currentPage={PrivateRoutes.HISTORY} />
+      <ProfileDetails />
+      <Section>
+        <h2>{"My History"}</h2>
+        <History />
+      </Section>
+    </>
+  )
+}
+export default HistoryPage

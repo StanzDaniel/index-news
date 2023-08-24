@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Cards';
 export * from './DropdownMenu';
 export * from './Form/InputUser';
 export * from './Form/ModalError';
@@ -8,6 +9,7 @@ export * from './NavList/NavItem';
 export * from './NavList';
 export * from './Navbar/NavbarContainer';
 export * from './Navbar';
+export * from './Profile/ProfileDetails';
 export * from './Profile/ProfileImage';
 export * from './Profile/ProfileModal';
 export * from './Profile';

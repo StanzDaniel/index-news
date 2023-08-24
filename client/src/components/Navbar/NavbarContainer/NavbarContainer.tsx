@@ -82,7 +82,7 @@ function NavbarContainer({children}: {children: ReactNode}) {
     <Container className={!isNavVisible ? 'hidden' : ''}>
       <Link to={`/${PublicRoutes.HOME}`} className='logo'>
         <img
-          src='src\assets\logo.svg'
+          src='../src/assets/logo.svg' 
           alt='logotype'
           className='logo-image'
         />
@@ -94,7 +94,7 @@ function NavbarContainer({children}: {children: ReactNode}) {
           <div
             className='hamburguer-menu'
             onClick={() => navbarContext.setContextValue(true)}>
-            <img src='src\assets\hamburguerMenu.svg' alt='abrir menu' />
+            <img src='../src/assets/hamburguerMenu.svg' alt='abrir menu' />
           </div>
         )
       ) : (

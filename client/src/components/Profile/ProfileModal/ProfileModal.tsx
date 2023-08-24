@@ -1,4 +1,4 @@
-import { COLORS, PublicRoutes } from '@/models';
+import { COLORS, PrivateRoutes, PublicRoutes } from '@/models';
 import styled from 'styled-components';
 import ProfileImage from '../ProfileImage/ProfileImage';
 import { useRef } from 'react';
@@ -36,39 +36,56 @@ interface Props {
 function ProfileModal({ onClick }: Props) {
   const modalRef = useRef(null);
   const navigate = useNavigate();
-  const user = useSelector((store: any)=> store.user)
-  const dispatch = useDispatch()
+  const user = useSelector((store: any) => store.user);
+  const dispatch = useDispatch();
 
   useClickOutside(modalRef, onClick);
-
-  const handleClick = (text: string) => {
-    console.log(text);
-  };
-
-  const logout = () => {
-    dispatch(logoutUser());
-    navigate(`../${PublicRoutes.HOME}`, { replace: true });
-  };
-
-  const login = () => {
-    navigate(`../${PublicRoutes.LOGIN}`, { replace: true });
-  };
 
   return (
     <ModalContainer ref={modalRef}>
       <ProfileImage showName={true} onClick={onClick} />
-      <NavItem click={handleClick} value='saved'>
-        {'saved'}
-      </NavItem>
-      <NavItem click={handleClick} value='settings'>
-        {'settings'}
-      </NavItem>
-      { user.name ? (
-        <NavItem click={logout} value='logout'>
-          {'logout'}
-        </NavItem>
+      {user.name ? (
+        <>
+          <NavItem
+            click={() =>
+              navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.HISTORY}`, {
+                replace: true,
+              })
+            }
+            value='settings'>
+            {'history'}
+          </NavItem>
+          <NavItem
+            click={() =>
+              navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.READLATER}`, {
+                replace: true,
+              })
+            }
+            value='saved'>
+            {'read later'}
+          </NavItem>
+          <NavItem
+            click={() =>
+              navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.SETTINGS}`, {
+                replace: true,
+              })
+            }
+            value='settings'>
+            {'settings'}
+          </NavItem>
+          <NavItem
+            click={() => {
+              dispatch(logoutUser());
+              navigate(`/${PublicRoutes.HOME}`, { replace: true });
+            }}
+            value='logout'>
+            {'logout'}
+          </NavItem>
+        </>
       ) : (
-        <NavItem click={login} value='login'>
+        <NavItem
+          click={() => navigate(`/${PublicRoutes.LOGIN}`, { replace: true })}
+          value='login'>
           {'login or register'}
         </NavItem>
       )}

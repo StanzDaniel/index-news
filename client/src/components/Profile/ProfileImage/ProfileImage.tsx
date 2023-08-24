@@ -3,21 +3,21 @@ import styled from "styled-components";
 import { ProfileProps } from "../Profile";
 import { useSelector } from "react-redux";
 
-const ImageContainer = styled.div`
-  align-self: end;
+const ImageContainer = styled.div<{size: number}>`
   margin: 15px;
   margin-top: 0;
-  height: 60px;
+  height: ${(Props) => Props.size}px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  flex-direction: ${(Props) => Props.size > 60 ? 'column-reverse' : 'row'};
+  justify-content: ${(Props) => Props.size > 60 ? 'center' : 'end'};
   gap: 20px;
 
   @media (min-width: 768px) {
     & {
       margin: 0;
       margin-right: 10px;
-      height: 50px;
+      height: ${(Props) => Props.size <= 60 ? 50 : Props.size}px;
       align-self: center;
     }
   }
@@ -44,15 +44,16 @@ const ImageContainer = styled.div`
 `;
 interface ImageProps extends ProfileProps {
   onClick?: () => void;
+  size?: number;
 }
 
-function ProfileImage({showName, onClick}: ImageProps) {
+function ProfileImage({showName, onClick, size = 60}: ImageProps) {
   const user = useSelector((store: any)=> store.user)
 
   return (
-    <ImageContainer onClick={onClick}>
+    <ImageContainer onClick={onClick} size={size}>
       {showName && <h3 className="profile-name">{user.name ? user.name : "unknown"}</h3>}
-      <img src={user.image ? user.image : "src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
+      <img src={user.image ? user.image : "../src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
     </ImageContainer>
   )
 }

@@ -1,5 +1,5 @@
 export * from './Login';
-export * from './NewsPage/components/Cards';
+export * from '../components/Cards';
 export * from './NewsPage/components/NavbarNewsPage';
 export * from './NewsPage/components/NewsPageContent';
 export * from './NewsPage/components/Slider/ArrowButton';

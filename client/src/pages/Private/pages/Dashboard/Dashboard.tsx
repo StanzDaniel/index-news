@@ -1,17 +1,14 @@
-import { database } from "@/models";
+import { ProfileDetails } from "@/components";
+import { COLORS, PrivateRoutes, database } from "@/models";
 import { loadUser } from "@/redux";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Cards, NewsPageContent, Slider } from "./components";
-import { NavbarNewsPage } from "./components/NavbarNewsPage";
-import { NewsPageProvider } from "./context";
+import { History, NavbarPrivate, ReadLater, Section } from "../../components";
 
-
-
-function NewsPage() {
+function Dashboard() {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const token = document.cookie.replace("token=", "");
     axios
@@ -31,13 +28,18 @@ function NewsPage() {
   }, [])
   
   return (
-    <NewsPageProvider>
-      <NavbarNewsPage/>
-      <NewsPageContent>
-        <Slider />
-        <Cards />
-      </NewsPageContent>
-    </NewsPageProvider>
-  );
-};
-export default NewsPage;
+    <>
+      <NavbarPrivate currentPage={PrivateRoutes.DASHBOARD} />
+      <ProfileDetails />
+      <Section>
+        <h2>{"My History"}</h2>
+        <History isPreview/>
+      </Section>
+      <Section color={COLORS.SECONDARY_COLOR_ALPHA}>
+        <h2>{"Read Later"}</h2>
+        <ReadLater isPreview />
+      </Section>
+    </>
+  )
+}
+export default Dashboard

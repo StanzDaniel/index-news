@@ -1,5 +1,5 @@
 export { default as NewsPage } from './NewsPage';
-export * from './components/Cards';
+export * from '../../components/Cards';
 export * from './components/NewsPageContent';
 export * from './components/Slider/ArrowButton';
 export * from './components/Slider/ImageSlider';
