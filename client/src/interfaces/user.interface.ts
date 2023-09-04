@@ -1,3 +1,5 @@
+import { News } from "./News.interface";
+
 export interface User {
     name: string,
     lastName: string,
@@ -7,4 +9,6 @@ export interface User {
     confirmPassword?: string,
     image?: string,
     token?: string,
+    history: News[],
+    readLater: News[],
 };

@@ -4,7 +4,7 @@ import { SECRET } from "../models/secret.model.js";
 import { User } from "../database/models.database.js";
 
 export const validateJwt = (req, res, next) => {
-  const token = req.header('authorization');
+  const token = req.header('Authorization');
 
   jwt.verify(token, SECRET.JWT, (err, id ) => {
     if (err) {
@@ -22,7 +22,9 @@ const assignUser = async (req, res, next) => {
       const id = req.body.auth;
       const user = await User.findById(id);
       if (!user) throw new Error('user not found');
-      req.body.user = user;
+      const userWithToken = { ...user._doc, token: req.header('Authorization') };
+      req.body.user = userWithToken;
+
       next();
   } catch (error) {
     next(error);

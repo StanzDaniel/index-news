@@ -1,4 +1,18 @@
-import { model } from "mongoose";
+import { Schema, model } from "mongoose";
+
+const newsSchema = new Schema({
+  source: {
+    id: String,
+    name: String
+  },
+  author: String,
+  title: String,
+  description: String,
+  url: String,
+  urlToImage: String,
+  publishedAt: String,
+  content: String
+});
 
 export const User = model("User", {
   name: String,
@@ -8,4 +22,6 @@ export const User = model("User", {
   password: String,
   salt: String,
   image: String,
+  history: [newsSchema],
+  readLater: [newsSchema],
 })

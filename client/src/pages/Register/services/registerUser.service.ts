@@ -20,10 +20,14 @@ export const registerUser = async (
       return;
     }
   } catch (error: any) {
+    if (error.code === RESPONSE_ADAPTER.ERR_NETWORK){
+      console.log({ ERROR: error.message });
+      return;
+    };
     if (error.response.status === RESPONSE_ADAPTER.BAD_REQUEST) {
       setEmailError(error.response.data);
       return;
-    }
+    };
     console.log({ ERROR: error.message });
   }
 };
