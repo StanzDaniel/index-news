@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
       email: body.email,
       image: body.image,
       password: hash,
-      salt: salt
+      salt: salt,
     });
     
     return res.sendStatus(201);

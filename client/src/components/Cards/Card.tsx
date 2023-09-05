@@ -1,5 +1,9 @@
 import { COLORS } from "@/models";
 import styled from "styled-components";
+import ReadLaterToggle from "../ReadLaterToggle/ReadLaterToggle";
+import { News } from "@/interfaces";
+import { setReadLater } from "@/services/setReadLater.service";
+import { setHistory } from "@/services";
 
 const CardContainer = styled.div`
   width: 100%;
@@ -53,15 +57,27 @@ const CardImage = styled.img`
   border-top-left-radius: 6px;
 `
 
-function Card(props: any) {
+interface CardProps {
+  news: News;
+}
+
+
+
+function Card({ news }: CardProps) {
+
+  const clickOnNews = () => {
+    setHistory(news);
+    window.open(news.url);
+  }
 
   return (
-    <CardContainer onClick={props.onClick} >
-      <CardTitle>{props.title}</CardTitle>
-      <CardImage src={props.image ? props.image : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
+    <CardContainer >
+      <CardTitle>{news.title}</CardTitle>
+      <CardImage onClick={clickOnNews} src={news.urlToImage ? news.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
         currentTarget.onerror = null;
         currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
       }}/>
+      <ReadLaterToggle news={news}/>
       <CardFooter />
     </CardContainer>
   )

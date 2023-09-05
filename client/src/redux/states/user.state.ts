@@ -1,10 +1,6 @@
 import { User } from "@/interfaces";
-import { loginUser } from "@/pages/Login/services";
-import { validateToken } from "@/services";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
 
 export const userEmptyState: User = {
   name: '',
@@ -14,6 +10,8 @@ export const userEmptyState: User = {
   password: '',
   image: '',
   token: '',
+  history: [],
+  readLater: [],
 }
 
 
@@ -22,6 +20,7 @@ export const userSlice = createSlice({
   initialState: userEmptyState,
   reducers: {
     loadUser: (state, action) => {
+      document.cookie = `token=${action.payload.token}; path=/;`;
       return action.payload;
     },
     updateUser: (state, action) => ({...state, ...action.payload}),

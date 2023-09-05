@@ -1,15 +1,25 @@
-import { ContextTypes } from "@/interfaces";
+import { ContextTypes, News } from "@/interfaces";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 const initialState = {
-  contextValue: [''],
+  contextValue: [{  source: {
+    id: "",
+    name: "",
+  },
+  author: "",
+  title: "",
+  description: "",
+  url: "",
+  urlToImage: "",
+  publishedAt: "",
+  content: "",}],
   setContextValue: () => {},
 }
 
-export const NewsPageContext = createContext<ContextTypes<string[]>>(initialState);
+export const NewsPageContext = createContext<ContextTypes<News[]>>(initialState);
 
 export const NewsPageProvider = ({children}: {children: ReactNode}) => {
-  const [contextValue, setContextValue] = useState<string[]>([]);
+  const [contextValue, setContextValue] = useState<News[]>(initialState.contextValue);
   return (
     <NewsPageContext.Provider value={{ contextValue, setContextValue }}>
       { children }

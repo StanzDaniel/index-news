@@ -17,12 +17,13 @@ export const loginUser = async (
       },
     });
     if (response.status === RESPONSE_ADAPTER.OK) {
-      document.cookie = `token=${
-        response.data.token
-      }; max-age=${600}; path=/; samesite=strict;`;
       setUser(response.data);
     }
   } catch (error: any) {
+    if (error.code === RESPONSE_ADAPTER.ERR_NETWORK){
+      console.log({ ERROR: error.message });
+      return;
+    }
     switch (error.response.status) {
       case RESPONSE_ADAPTER.UNAUTHORIZED: {
         setPasswordError(error.response.data);
@@ -34,6 +35,7 @@ export const loginUser = async (
       }
       default: {
         console.log({ ERROR: error.response.data });
+        break;
       }
     }
   }
