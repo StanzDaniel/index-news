@@ -7,8 +7,8 @@ export interface User {
     email: string,
     password: string,
     confirmPassword?: string,
-    image?: string,
+    image?: '',
     token?: string,
-    history: News[],
-    readLater: News[],
+    history?: News[],
+    readLater?: News[],
 };

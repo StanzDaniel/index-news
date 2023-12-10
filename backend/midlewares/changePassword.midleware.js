@@ -1,5 +1,5 @@
 import { User } from "../database/models.database.js";
-import { decrypt, encrypt } from "../utilities/crypt.utility.js";
+import { encrypt } from "../utilities/crypt.utility.js";
 
 export const changePassword =  async (req, res) => {
   const { currentPassword, newPassword } = req.body;
@@ -8,7 +8,6 @@ export const changePassword =  async (req, res) => {
 
   try {
     const user = await User.findOne({email: email});
-    const isMatch = await decrypt(currentPassword, user.password);
     const {salt, hash } = await encrypt(newPassword);
 
     if (!isMatch) {

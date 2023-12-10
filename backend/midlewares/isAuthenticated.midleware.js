@@ -31,4 +31,4 @@ const assignUser = async (req, res, next) => {
 };
 
 
-export const isAuthenticated = express.Router().use(validateJwt, assignUser);
+export const  isAuthenticated = express.Router().use(validateJwt, assignUser);

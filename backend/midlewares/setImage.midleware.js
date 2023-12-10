@@ -20,10 +20,10 @@ export const storage = multer.diskStorage({
 export const upload = multer({ storage });
 
 export const setImage = async (req, res) => {  
-  console.log(req)
   try {
     const user = await User.findOne({email: req.body.user.email});
-    user.image =  req.file;
+    console.log(req.file)
+    user.image = req.file.filename;
     user.save();
     return res.sendStatus(200);
   } catch (error) {

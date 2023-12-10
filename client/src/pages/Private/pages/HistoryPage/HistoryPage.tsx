@@ -3,10 +3,9 @@ import { useValidateToken } from "@/hooks";
 import { PrivateRoutes } from "@/models";
 import { History, NavbarPrivate, Section } from "../../components";
 
-
 function HistoryPage() {
   useValidateToken();
-  
+
   return (
     <>
       <NavbarPrivate currentPage={PrivateRoutes.HISTORY} />
@@ -16,6 +15,7 @@ function HistoryPage() {
         <History />
       </Section>
     </>
-  )
+  );
 }
-export default HistoryPage
+export default HistoryPage;
+

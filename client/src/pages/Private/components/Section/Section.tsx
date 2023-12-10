@@ -7,6 +7,7 @@ export const Section = styled.section<{color?: string}>`
   align-items: center;
   background-color: ${(Props) => Props.color ? Props.color : 'inherit'};
   padding-bottom: 40px;
+  
 
   & a {
     background-color:  ${COLORS.SECONDARY_COLOR_ALPHA};

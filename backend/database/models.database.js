@@ -32,7 +32,7 @@ export const User = model("User", {
   email: String,
   password: String,
   salt: String,
-  image: imageSchema,
+  image: String,
   history: [newsSchema],
   readLater: [newsSchema],
 })

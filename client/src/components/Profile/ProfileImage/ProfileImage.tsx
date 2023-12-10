@@ -1,4 +1,4 @@
-import { COLORS } from "@/models";
+import { COLORS, database } from "@/models";
 import styled from "styled-components";
 import { ProfileProps } from "../Profile";
 import { useSelector } from "react-redux";
@@ -7,23 +7,27 @@ const ImageContainer = styled.div<{size: number}>`
   margin: 15px;
   margin-top: 0;
   height: ${(Props) => Props.size}px;
+  width: ${(Props) => Props.size}px;
   display: flex;
   align-items: center;
-  flex-direction: ${(Props) => Props.size > 60 ? 'column-reverse' : 'row'};
-  justify-content: ${(Props) => Props.size > 60 ? 'center' : 'end'};
+  flex-direction: row;
+  justify-content: end;
   gap: 20px;
+  align-self: center;
 
   @media (min-width: 768px) {
     & {
       margin: 0;
-      margin-right: 10px;
       height: ${(Props) => Props.size <= 60 ? 50 : Props.size}px;
+      width: ${(Props) => Props.size <= 60 ? 50 : Props.size}px;
       align-self: center;
     }
   }
   
   .profile-image {
     height: 100%; 
+    width: 100%;
+    object-fit: cover;
     border-radius: 50%;
     cursor: pointer;
     transition: border 0.4s ease;
@@ -34,27 +38,43 @@ const ImageContainer = styled.div<{size: number}>`
     }
   }
 
-  & .profile-name {
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: .05rem;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
+
 `;
 interface ImageProps extends ProfileProps {
   onClick?: () => void;
   size?: number;
 }
 
-function ProfileImage({showName, onClick, size = 60}: ImageProps) {
+const profileName:  React.CSSProperties | undefined= { 
+  fontSize: "0.8rem",
+  fontWeight: "400",
+  letterSpacing: ".05rem",
+  textTransform: "uppercase",
+  cursor: "pointer",
+  alignSelf: "center",
+  marginBottom: "15px",
+}
+
+function ProfileImage({showName, onClick, size = 60,}: ImageProps) {
   const user = useSelector((store: any)=> store.user)
 
   return (
-    <ImageContainer onClick={onClick} size={size}>
-      {showName && <h3 className="profile-name">{user.name ? user.name : "unknown"}</h3>}
-      <img src={user.image ? user.image : "../src/assets/img/profile_image_empty.jpg"} alt="profile image" className="profile-image" />
-    </ImageContainer>
-  )
+    <>
+      <ImageContainer onClick={onClick} size={size}>
+        <img
+          src={
+            user.name
+              ? database.SERVER_IMAGE + user.image
+              : '../src/assets/img/profile_image_empty.jpg'
+          }
+          alt='profile image'
+          className='profile-image'
+        />
+      </ImageContainer>
+      {showName && (
+        <h3 style={profileName}>{user.name ? user.name : 'unknown'}</h3>
+      )}
+    </>
+  );
 }
 export default ProfileImage

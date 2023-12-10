@@ -39,7 +39,7 @@ export function SuccesfulModal({redirect}:{redirect: string}) {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate(`../${redirect}`, { replace: true });
+      navigate(`/${redirect}`, { replace: true });
     }, 900);
   }, [])
   return (
