@@ -9,7 +9,7 @@ export default {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
     "^.+\\.svg$": "jest-svg-transformer", 
-  },
+  }
   setupFilesAfterEnv: [
     "<rootDir>/jest.setup.js"
  ],

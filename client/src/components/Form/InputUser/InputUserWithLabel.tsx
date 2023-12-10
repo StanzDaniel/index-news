@@ -5,10 +5,12 @@ import { ModalError } from "../ModalError";
 interface Props {
   label: string;
   name: string;
-  value: string;
+  value?: string;
   type: string;
   error?: string;
   touched?: boolean;
+  accept?: string;
+  placeholder?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
@@ -25,11 +27,11 @@ const Container = styled.div`
   position: relative;
 `;
 
-function InputUserWithLabel({ label, value, name, type, onChange, onBlur, touched, error}: Props) {
+function InputUserWithLabel({ label, value, name, type, onChange, onBlur, touched, error, accept, placeholder}: Props) {
   return (
     <Container>
       <Label>{label}</Label>
-      <InputUser className={`${ touched && error ? 'error' : ''}`} value={value} name={name} type={type} onChange={onChange} onBlur={onBlur} ></InputUser>
+      <InputUser className={`${ touched && error ? 'error' : ''}`} accept={accept} value={value} name={name} type={type} onChange={onChange} onBlur={onBlur} placeholder={placeholder} ></InputUser>
       { touched && error && <ModalError>{error}</ModalError> }
     </Container>
   )

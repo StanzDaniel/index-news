@@ -61,7 +61,7 @@ function LoginForm() {
           {...formik.getFieldProps('password')}
         />
         <ButtonPrimary type='submit'>
-          {isSubmitting ? <Spinner size={16} /> : 'Register'}
+          {isSubmitting ? <Spinner size={16} /> : 'Login'}
         </ButtonPrimary>
       </FormUser>
     </CenteredContainer>

@@ -14,7 +14,7 @@ function RegisterForm() {
   const formik = useFormik({
     initialValues: registerEmptyValues,
     validationSchema: registerSchema,    
-    onSubmit: values => registerUser(values, setEmailError, setIsRegistered),
+    onSubmit: data => registerUser(data, setEmailError, setIsRegistered),
   });
 
   const { values, errors, isSubmitting, touched } = formik;

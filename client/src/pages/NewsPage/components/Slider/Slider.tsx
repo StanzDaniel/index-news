@@ -4,6 +4,7 @@ import { DIRECTION, DefaultSliderValues } from "../../models";
 import { ArrowButton } from "./ArrowButton";
 import { ImageSlider } from "./ImageSlider";
 import { useNewsPageContext } from "../../context";
+import { News } from "@/interfaces";
 
 const SliderContainer = styled.div`
   height: 20rem;
@@ -41,7 +42,7 @@ function Slider() {
       return () => clearInterval(interval);
   }, [selectedIndex]);
 
-  const selectNewImage = (index: number, images: string[], direction: DIRECTION) => {
+  const selectNewImage = (index: number, images: News[], direction: DIRECTION) => {
     setLoaded(false);
     setTimeout(() => {
       const nextIndex = direction === DIRECTION.NEXT ? (index < images.length - 1 ? index + 1 : 0) : (index > 0 ? index - 1 : images.length - 1 );

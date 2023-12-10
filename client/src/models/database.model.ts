@@ -8,4 +8,6 @@ export enum database {
   HISTORY = "http://localhost:3000/history",
   READ_LATER = "http://localhost:3000/readlater",
   ACCESS_KEY = "$2b$10$xiC0skpsaZQ9z2IT3gktJ.n16oVJYK.IVU7MgJGr7x1kpll1gFoLm",
+  IMAGE = "http://localhost:3000/setimage",
+  SERVER_IMAGE = "http://localhost:3000/uploads/",
 }

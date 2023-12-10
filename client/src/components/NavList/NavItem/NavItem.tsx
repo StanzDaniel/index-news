@@ -9,8 +9,9 @@ const NavItemContainer = styled.li`
   cursor: pointer;
   white-space: nowrap;
   font-size: 12px;
-  transition: transform 0.25s ease,
-              color 0.4s ease;
+  transition:
+    transform 0.25s ease,
+    color 0.4s ease;
 
   &.active {
     color: ${COLORS.SECONDARY_COLOR};
@@ -29,19 +30,19 @@ interface Props {
   value: string;
 }
 
-function NavItem({children, click, className, value}: Props) {
-
+function NavItem({ children, click, className, value }: Props) {
   const navbarContext = useNavbarContext();
 
   const handleClick = (text: string) => {
     click(text);
     navbarContext.setContextValue(false);
-  }
+  };
 
   return (
     <NavItemContainer className={className} onClick={() => handleClick(value)}>
       {children}
     </NavItemContainer>
-  )
+  );
 }
-export default NavItem
+export default NavItem;
+

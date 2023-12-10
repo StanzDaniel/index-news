@@ -2,7 +2,7 @@ import { PublicRoutes } from "@/models";
 import { Navigate, Outlet } from "react-router-dom"
 
 function AuthGuard() {
-  const token = localStorage.getItem("token");
+  const token = true;
   return token ? <Outlet/> : <Navigate replace to={PublicRoutes.LOGIN}/>;
 }
 

@@ -14,6 +14,17 @@ const newsSchema = new Schema({
   content: String
 });
 
+const imageSchema = new Schema({
+  fieldname: String,
+  originalname: String,
+  encoding: String,
+  mimetype: String,
+  destination: String,
+  filename: String,
+  path: String,
+  size: Number,
+});
+
 export const User = model("User", {
   name: String,
   lastName: String,

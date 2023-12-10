@@ -1,5 +1,7 @@
 import cors from 'cors';
 import express from 'express';
+import path, { dirname } from 'path';
+
 import { connect } from 'mongoose';
 import { changePassword } from './midlewares/changePassword.midleware.js';
 import { deleteUser } from './midlewares/delete.midleware.js';
@@ -18,18 +20,24 @@ import { registerValidation } from './validators/register.validator.js';
 import { updateValidation } from './validators/update.validator.js';
 import { setReadLater } from './midlewares/setReadLater.midleware.js';
 
+import { setImage, upload } from './midlewares/setImage.midleware.js';
+import { fileURLToPath } from 'url';
+
 const app = express();
 
 app.use(cors())
 
 app.use(express.json());
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); 
 
 await connect(SECRET.BD_CREDENTIALS)
 
 app.use(auth); // access control
 
-app.post('/register', registerValidation, registerUser);
+app.post('/register', registerValidation, upload.single('file'), registerUser);
 app.post('/login', loginValidation, loginUser);
 app.post('/validate', isAuthenticated, returnUser);
 app.post('/deleteuser', isAuthenticated, deleteUser);
@@ -37,6 +45,10 @@ app.post('/updateuser', isAuthenticated, updateValidation, updateUser);
 app.post('/changepassword', isAuthenticated, changePasswordValidation, changePassword);
 app.post('/history', isAuthenticated, setHistory);
 app.post('/readlater', isAuthenticated, setReadLater);
+app.post('/setimage', upload.single('file'), isAuthenticated, setImage);
+
+
+
 
 app.use(error)
 

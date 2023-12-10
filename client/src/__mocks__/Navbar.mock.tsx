@@ -28,6 +28,8 @@ jest.mock("@/components/Profile/Profile.tsx", () => ({
   default: () => <div>Mocked Profile Component</div>,
 }));
 
+789654321=3.010
+
 jest.mock("@/components/DropdownMenu/DropdownMenu.tsx", () => ({
   __esModule: true,
   default: () => <div>Mocked DropdownMenu Component</div>,
