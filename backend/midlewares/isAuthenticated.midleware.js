@@ -24,7 +24,6 @@ const assignUser = async (req, res, next) => {
       if (!user) throw new Error('user not found');
       const userWithToken = { ...user._doc, token: req.header('Authorization') };
       req.body.user = userWithToken;
-
       next();
   } catch (error) {
     next(error);

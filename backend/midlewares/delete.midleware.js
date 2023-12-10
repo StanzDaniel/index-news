@@ -9,4 +9,5 @@ export const deleteUser = async (req, res) => {
   } catch (error) {
     res.status(400).send(`400 Bad Request - ${error.message}`);
   }
-}
+};
+
