@@ -41,7 +41,7 @@ function ReadLaterToggle({news}: {news: News}) {
   const { readLater } = useSelector((store: any) => store.user);
 
   useEffect(() => {
-    const includes = readLater.filter((item: News) => item.content === news.content);
+    const includes = readLater.filter((item: News) => item.summary === news.summary);
     if (includes.length > 0) {
       setIsStared(true);
     }
