@@ -5,7 +5,6 @@ import { AuthGuard, RoutesWithNotFound } from "./utilities";
 
 import { Provider } from "react-redux";
 import { LoadingSpinner } from "./components";
-import { AxiosInterceptor } from "./interceptors";
 import { store } from "./redux";
 import PublicGuard from "./utilities/PublicGuard.utility";
 
@@ -13,8 +12,6 @@ const NewsPage = lazy(() => import('./pages/NewsPage/NewsPage'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const Register = lazy(() => import('./pages/Register/Register'));
 const Private = lazy(() => import('./pages/Private/Private'));
-
-AxiosInterceptor();
 
 function App() {
   return (

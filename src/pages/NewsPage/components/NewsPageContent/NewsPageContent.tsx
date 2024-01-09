@@ -3,6 +3,7 @@ import { useNewsPageContext } from "../../context";
 import { sharingInfoNavItems, sharingInfoSearchNews } from "@/services";
 import { searchNewsFetch, topNewsFetch } from "../../services";
 import { LoadingSpinner } from "@/components";
+import { REQUEST_ADAPTER } from "@/adapters";
 
 function NewsPageContent({children}: any) {  
   const [isLoadedData, setIsLoadedData ] = useState(false);
@@ -30,7 +31,7 @@ function NewsPageContent({children}: any) {
     setIsLoadedData(false);
     NavItemsSubscription$.subscribe(data => data ? fetchData(data) : null)
     SearchNewsSubscription$.subscribe(data => data ? searchNews(data) : null)
-    fetchData("general");
+    fetchData(REQUEST_ADAPTER.TOPNEWS);
   }, [])
   
   if (!isLoadedData) {

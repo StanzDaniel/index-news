@@ -1,9 +1,12 @@
-import axios from "axios";
+import { API } from '@/models';
+import axios from 'axios';
 
 async function topNewsFetch(value: {}) {
+  const data = await axios.get(
+    `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=${value}`,
+    { headers: { 'x-api-key': API.KEY } }
+  );
 
-  const data = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=${value}`);
-
-  return data
+  return data;
 }
-export default topNewsFetch
+export default topNewsFetch;

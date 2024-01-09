@@ -67,13 +67,13 @@ function Card({ news }: CardProps) {
 
   const clickOnNews = () => {
     setHistory(news);
-    window.open(news.url);
+    window.open(news.link);
   }
 
   return (
     <CardContainer >
       <CardTitle>{news.title}</CardTitle>
-      <CardImage onClick={clickOnNews} src={news.urlToImage ? news.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
+      <CardImage onClick={clickOnNews} src={news.media ? news.media : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
         currentTarget.onerror = null;
         currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
       }}/>

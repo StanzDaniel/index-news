@@ -2,17 +2,27 @@ import { ContextTypes, News } from "@/interfaces";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 const initialState = {
-  contextValue: [{  source: {
-    id: "",
-    name: "",
-  },
-  author: "",
-  title: "",
-  description: "",
-  url: "",
-  urlToImage: "",
-  publishedAt: "",
-  content: "",}],
+  contextValue: [{
+    title: "",
+    author: "",
+    published_date: "",
+    published_date_precision: "",
+    link: "",
+    clean_url: "",
+    excerpt: "",
+    summary: "",
+    rights: "",
+    rank: 0,
+    topic: "",
+    country: "",
+    language: "",
+    authors: "",
+    media: "",
+    is_opinion: false,
+    twitter_account: "",
+    _score: null,
+    _id: "",
+  }],
   setContextValue: () => {},
 }
 
