@@ -2,8 +2,8 @@ import { COLORS } from "@/models";
 import styled from "styled-components";
 import ReadLaterToggle from "../ReadLaterToggle/ReadLaterToggle";
 import { News } from "@/interfaces";
-import { setReadLater } from "@/services/setReadLater.service";
 import { setHistory } from "@/services";
+import noImageAvaliable from "@/assets/no_image_avaliable.jpg"
 
 const CardContainer = styled.div`
   width: 100%;
@@ -73,9 +73,9 @@ function Card({ news }: CardProps) {
   return (
     <CardContainer >
       <CardTitle>{news.title}</CardTitle>
-      <CardImage onClick={clickOnNews} src={news.media ? news.media : "src/assets/img/no_image_avaliable.jpg"} alt="" onError={({currentTarget}) => {
+      <CardImage onClick={clickOnNews} src={news.media ? news.media : noImageAvaliable} alt="" onError={({currentTarget}) => {
         currentTarget.onerror = null;
-        currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
+        currentTarget.src = noImageAvaliable;
       }}/>
       <ReadLaterToggle news={news}/>
       <CardFooter />

@@ -2,6 +2,7 @@ import { COLORS, database } from "@/models";
 import styled from "styled-components";
 import { ProfileProps } from "../Profile";
 import { useSelector } from "react-redux";
+import emptyProfileImage from "@/assets/profile_image_empty.jpg";
 
 const ImageContainer = styled.div<{size: number}>`
   margin: 15px;
@@ -63,10 +64,14 @@ function ProfileImage({showName, onClick, size = 60,}: ImageProps) {
       <ImageContainer onClick={onClick} size={size}>
         <img
           src={
-            user.name
+            user.image
               ? database.SERVER_IMAGE + user.image
-              : '../src/assets/img/profile_image_empty.jpg'
+              : emptyProfileImage
           }
+          onError={({currentTarget}) => {
+            currentTarget.onerror = null;
+            currentTarget.src = emptyProfileImage;
+          }}
           alt='profile image'
           className='profile-image'
         />

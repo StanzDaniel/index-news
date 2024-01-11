@@ -2,6 +2,7 @@ import { DIRECTION } from "@/pages/NewsPage/models";
 import { useContext } from "react";
 import styled from "styled-components";
 import { SliderContext } from "../Slider";
+import arrowBtn from "@/assets/arrow_btn.svg"
 
 const StyledButton = styled.button`
   width: 62px;
@@ -26,7 +27,7 @@ function ArrowButton({direction}: Props) {
   const {handlerSlider} = useContext(SliderContext);
 
   return (
-    <StyledButton className={direction} onClick={() => handlerSlider(direction) }><img src="src/assets/arrow_btn.svg" alt={direction} /></StyledButton>
+    <StyledButton className={direction} onClick={() => handlerSlider(direction) }><img src={arrowBtn} alt={direction} /></StyledButton>
   )
 }
 export default ArrowButton

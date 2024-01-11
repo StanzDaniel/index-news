@@ -5,6 +5,8 @@ import { mobileCheck } from "@/utilities";
 import { ReactNode, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logotype from "@/assets/logo.svg";
+import hamburguerMenu from "@/assets/hamburguerMenu.svg"
 
 const Container = styled.nav`
   background-color: ${COLORS.PRIMARY_COLOR};
@@ -82,7 +84,7 @@ function NavbarContainer({children}: {children: ReactNode}) {
     <Container className={!isNavVisible ? 'hidden' : ''}>
       <Link to={`/${PublicRoutes.HOME}`} className='logo'>
         <img
-          src='../src/assets/logo.svg' 
+          src={logotype}
           alt='logotype'
           className='logo-image'
         />
@@ -94,7 +96,7 @@ function NavbarContainer({children}: {children: ReactNode}) {
           <div
             className='hamburguer-menu'
             onClick={() => navbarContext.setContextValue(true)}>
-            <img src='../src/assets/hamburguerMenu.svg' alt='abrir menu' />
+            <img src={hamburguerMenu} alt='abrir menu' />
           </div>
         )
       ) : (
