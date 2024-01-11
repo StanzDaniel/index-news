@@ -3,11 +3,13 @@ import { setReadLater } from "@/services/setReadLater.service";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import starImg from "@/assets/star.svg";
+import starFilledImg from "@/assets/star_filled.svg";
 
 const Star = styled.div<{isStared: boolean}>`
   width: 40px;
   height: 40px;
-  background-image: url(${(Props) => Props.isStared ? "../src/assets/star_filled.svg" : "../src/assets/star.svg"});
+  background-image: url(${(Props) => Props.isStared ? starFilledImg : starImg});
   background-position: center;
   background-size: cover;
   position: absolute;
