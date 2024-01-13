@@ -38,3 +38,15 @@ a {
 .paddingBottom20px {
   padding-bottom: 20px;
 }
+
+footer {
+  background-color: rgb(245, 129, 129);
+  padding: 10px 15px;
+}
+
+footer > a {
+  color: black;
+  font-size: 15px;
+  display: block;
+  text-align: right;
+}
