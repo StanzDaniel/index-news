@@ -1,9 +1,11 @@
 export enum REQUEST_ADAPTER {
-  "TOPNEWS" = 'world',
+  "TOPNEWS" = 'general',
   "BUSINESS" = 'business',
   "ENTERTAINMENT" = 'entertainment',
   "SCIENCE" = 'science',
-  "HEALTH" = 'food',
-  "SPORTS" = 'beauty',
+  "HEALTH" = 'health',
+  "SPORTS" = 'sports',
   "TECHNOLOGY" = 'tech',
 }
+
+

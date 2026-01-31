@@ -87,10 +87,10 @@ function ImageSlider() {
 
   return (
     <ImageSliderContainer className={`${loaded && 'loaded'}`}>
-      {!isMobile && <PrevImage src={prevImage.media ? prevImage.media : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
-      <div className="main-image" onClick={() => window.open(selectedImage.link)} >
+      {!isMobile && <PrevImage src={prevImage.urlToImage ? prevImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
+      <div className="main-image" onClick={() => window.open(selectedImage.url)} >
         <Image
-          src={selectedImage.media ? selectedImage.media : "src/assets/img/no_image_avaliable.jpg"}
+          src={selectedImage.urlToImage ? selectedImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"}
           alt='image of the news'
           onLoad={handleOnLoadImage}
           onError={({currentTarget}) => {
@@ -100,7 +100,7 @@ function ImageSlider() {
         />
         <NewsTitle>{selectedImage.title}</NewsTitle>
       </div>
-      {!isMobile && <PrevImage src={nextImage.media ? nextImage.media : "src/assets/img/no_image_avaliable.jpg" } alt='image of the news' /> }
+      {!isMobile && <PrevImage src={nextImage.urlToImage ? nextImage.urlToImage : "src/assets/img/no_image_avaliable.jpg" } alt='image of the news' /> }
     </ImageSliderContainer>
   );
 }

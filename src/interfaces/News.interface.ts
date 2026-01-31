@@ -3,7 +3,7 @@ export interface News {
   author: string;
   published_date: string;
   published_date_precision: string;
-  link: string;
+  url: string;
   clean_url: string;
   excerpt: string;
   summary: string;
@@ -13,7 +13,7 @@ export interface News {
   country: string;
   language: string;
   authors: string;
-  media: string;
+  urlToImage: string;
   is_opinion: boolean;
   twitter_account: string | null;
   _score: null;

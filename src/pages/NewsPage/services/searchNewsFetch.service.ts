@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function searchNewsFetch(search: {}) {
   const data = axios.get(
-    `https://api.newscatcherapi.com/v2/search?q=${search}`,
+    `https://newsapi.org/v2/everything?q=${search}&language=es`,
     { headers: { 'x-api-key': API.KEY } }
   );
 

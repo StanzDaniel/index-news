@@ -3,7 +3,7 @@ import axios from 'axios';
 
 async function topNewsFetch(value: {}) {
   const data = await axios.get(
-    `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=${value}`,
+    `https://newsapi.org/v2/top-headlines?category=${value}`,
     { headers: { 'x-api-key': API.KEY } }
   );
 
