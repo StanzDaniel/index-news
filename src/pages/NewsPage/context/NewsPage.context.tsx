@@ -1,4 +1,5 @@
 import { ContextTypes, News } from "@/interfaces";
+import { url } from "inspector";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
     author: "",
     published_date: "",
     published_date_precision: "",
-    link: "",
+    url: "",
     clean_url: "",
     excerpt: "",
     summary: "",
@@ -17,7 +18,7 @@ const initialState = {
     country: "",
     language: "",
     authors: "",
-    media: "",
+    urlToImage: "",
     is_opinion: false,
     twitter_account: "",
     _score: null,
