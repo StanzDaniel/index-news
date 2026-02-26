@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { SliderContext } from "../Slider";
 import { mobileCheck } from "@/utilities";
+import noImageAvaliable from "@/assets/no_image_avaliable.jpg"
 
 const ImageSliderContainer = styled.div`
   position: relative;
@@ -87,20 +88,20 @@ function ImageSlider() {
 
   return (
     <ImageSliderContainer className={`${loaded && 'loaded'}`}>
-      {!isMobile && <PrevImage src={prevImage.urlToImage ? prevImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"} alt='image of the news' /> }
+      {!isMobile && <PrevImage src={prevImage.image ? prevImage.image : noImageAvaliable} alt='image of the news' /> }
       <div className="main-image" onClick={() => window.open(selectedImage.url)} >
         <Image
-          src={selectedImage.urlToImage ? selectedImage.urlToImage : "src/assets/img/no_image_avaliable.jpg"}
+          src={selectedImage.image ? selectedImage.image : noImageAvaliable}
           alt='image of the news'
           onLoad={handleOnLoadImage}
           onError={({currentTarget}) => {
             currentTarget.onerror = null;
-            currentTarget.src = "src/assets/img/no_image_avaliable.jpg";
+            currentTarget.src = noImageAvaliable;
           }}
         />
         <NewsTitle>{selectedImage.title}</NewsTitle>
       </div>
-      {!isMobile && <PrevImage src={nextImage.urlToImage ? nextImage.urlToImage : "src/assets/img/no_image_avaliable.jpg" } alt='image of the news' /> }
+      {!isMobile && <PrevImage src={nextImage.image ? nextImage.image : noImageAvaliable } alt='image of the news' /> }
     </ImageSliderContainer>
   );
 }

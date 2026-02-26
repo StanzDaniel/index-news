@@ -73,7 +73,7 @@ function Card({ news }: CardProps) {
   return (
     <CardContainer >
       <CardTitle>{news.title}</CardTitle>
-      <CardImage onClick={clickOnNews} src={news.urlToImage ? news.urlToImage : noImageAvaliable} alt="" onError={({currentTarget}) => {
+      <CardImage onClick={clickOnNews} src={news.image ? news.image : noImageAvaliable} alt="" onError={({currentTarget}) => {
         currentTarget.onerror = null;
         currentTarget.src = noImageAvaliable;
       }}/>

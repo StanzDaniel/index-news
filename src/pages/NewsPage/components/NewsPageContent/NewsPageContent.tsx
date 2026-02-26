@@ -16,14 +16,14 @@ function NewsPageContent({children}: any) {
   const fetchData = async (value: {}) => {
     setIsLoadedData(false);
     const response = await topNewsFetch(value);    
-    newsPageContext.setContextValue(response.data.articles);
+    newsPageContext.setContextValue(response.data.news);
     setIsLoadedData(true);
   }; 
 
   const searchNews = async (value: {}) => {
     setIsLoadedData(false);
     const response = await searchNewsFetch(value);    
-    newsPageContext.setContextValue(response.data.articles);
+    newsPageContext.setContextValue(response.data.news);
     setIsLoadedData(true);
   };
   

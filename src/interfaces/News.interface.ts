@@ -13,7 +13,7 @@ export interface News {
   country: string;
   language: string;
   authors: string;
-  urlToImage: string;
+  image: string;
   is_opinion: boolean;
   twitter_account: string | null;
   _score: null;

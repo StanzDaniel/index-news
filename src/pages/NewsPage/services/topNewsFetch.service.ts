@@ -3,7 +3,7 @@ import axios from 'axios';
 
 async function topNewsFetch(value: {}) {
   const data = await axios.get(
-    `/.netlify/functions/news?category=${value}`,
+    `https://api.currentsapi.services/v1/search?category=${value}&language=es&apiKey=${API.KEY}`,
     // { headers: { 'x-api-key': API.KEY } }
   );
 

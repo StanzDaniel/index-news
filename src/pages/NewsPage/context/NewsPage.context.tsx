@@ -18,7 +18,7 @@ const initialState = {
     country: "",
     language: "",
     authors: "",
-    urlToImage: "",
+    image: "",
     is_opinion: false,
     twitter_account: "",
     _score: null,
